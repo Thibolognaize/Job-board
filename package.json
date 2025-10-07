@@ -1,7 +1,16 @@
 {
+  "name": "job-board-project",
+  "version": "1.0.0",
+  "description": "Project for Epitech by Thibault FEAT and Elif Deniz Göktürk",
+  "main": "server.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
   "dependencies": {
     "bootstrap": "^5.3.8",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
-  
