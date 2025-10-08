@@ -10,16 +10,75 @@
 </head>
 
 <body>
-    <header class="navbar bg-body-tertiary">
+    <style>
+        /* Réécriture temporaire des couleurs en css classique (a faire ensuite via variables bootstrap) */
+        nav {
+            background-color: #1c191a;
+        }
+
+        header text {
+            color: #f4b324;
+        }
+
+        section {
+            height: 100vh;
+            background-color: #f4b324;
+        }
+
+        .nav-link {
+            color: #f4b324 !important;
+            font-size: 20px;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../assets/clarternance.svg" alt="Logo" width="60" height="80"
-                    class="d-inline-block align-text-top" />
-                <h1 class="">Clarternance</h1>
+                <img src="assets/logo/clarternance.svg" alt="Logo" width="80" height="100"
+                    class="d-inline-block align-text-top"
+                    style="filter: invert(70%) sepia(39%) saturate(894%) hue-rotate(354deg) brightness(102%) contrast(91%);" />
+                <h1 class="h1" style="color: #f4b324;">Clarternance</h1>
             </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Text</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Text plus long</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">ETC</a>
+                    </li>
+                </ul>
+                <div id="profile-wrapper" class="d-flex" role="profile">
+                    <a class="nav-link" href="#">Profil</a>
+                    <img src="assets/images/profile-exemple.webp" alt="profile-picture" width="50px">
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- <header class="navbar">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/logo/clarternance.svg" alt="Logo" width="80" height="100"
+                class="d-inline-block align-text-top"
+                style="filter: invert(70%) sepia(39%) saturate(894%) hue-rotate(354deg) brightness(102%) contrast(91%);" />
+            <h1 class="h1" style="color: #f4b324;">Clarternance</h1>
+        </a>
+        <nav>
+            <ul class="navbar-nav flex-row style=" color: #f4b324;">
+                <li class="nav">text</li>
+                <li class="nav">Text Plus Longue</li>
+                <li class="nav">ETC</li>
+            </ul>
+        </nav>
+        <div class="profile-wrapper">
+            <a href="">Profile</a>
             <div></div>
         </div>
-    </header>
+    </header> -->
+    <section>
+
+    </section>
     <!-- </div>
         <nav>
             <ul>
@@ -31,8 +90,15 @@
         <div class="profil-wraper">
             <h6 class="">Profil</h6>
         </div> -->
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
