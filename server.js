@@ -5,6 +5,8 @@ const port = 3000;
 // view engine is ejs
 app.set("view engine", "ejs")
 
+app.use(express.static('public'))
+
 app.use(logger)
 
 // route for / renders index.html
