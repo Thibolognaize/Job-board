@@ -13,37 +13,66 @@
     <style>
         body{
             background-color: #f4b324;
+            color: #1c191a;
         }
+
         h1{
             font-family: "Le Jour Serif";
+            color: #1c191a;
         }
+
+        label{
+            font-family: "Garet";
+            color: #1c191a;
+        }
+
+        a,p{
+            font-family: "Cy Grotesk";
+            font-size: small;
+            color: #1c191a;
+        }
+
+        #connexion-button{
+            font-family: "Garet";
+            font-weight: bold;
+            color:#f6e7d8 ;
+        }
+
     </style>
     
     <div class="container h-100 d-flex align-items-center justify-content-center">
-        <div>
-            <h1>CLARTERNANCE</h1>
-            
+        <div class="bg-light bg-opacity-25 p-5 rounded-5">
+            <h1>
+                <img src="/public/assets/img/logo/clarternance.svg" alt="Logo" width="60">
+                CLARTERNANCE
+            </h1>
             <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div id="signIn" class="mb-2 form-text text-center">
+                    <p class="m-0">Vous n’avez pas encore de compte ?</p>
+                    <a href="#">Inscrivez vous par ici !</a>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="inputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword1" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="inputPassword1">
+                    <a href="#" class="form-text mb-1"> Mot de Passe oublie ?</a>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Rester connecté-e</label>
+                    <input type="checkbox" class="form-check-input" id="Check1">
+                    <label class="form-check-label border-black" for="Check1">Rester connecté-e</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="text-center">
+                    <button type="submit" id="connexion-button" class="btn rounded-5 bg-black p-3">CONNEXION</button>
+                </div>
             </form>
         </div>
     </div>
     
 
-<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
