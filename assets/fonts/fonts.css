@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Le Jour Serif";
+    src: url("/assets/fonts/Le\ Jour\ Serif\ Personal\ Use\ Only.otf");
+}
+
+@font-face {
+    font-family:"Cy Grotesk" ;
+    src: url("/assets/fonts/CyGrotesk-KeyRegular.otf");
+}
+
+@font-face {
+    font-family: "Garet";
+    src: url("/assets/fonts/Garet-Book.otf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Garet";
+    src: url("/assets/fonts/Garet-Heavy.otf");
+    font-weight: bold;
+}
