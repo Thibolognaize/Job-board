@@ -7,6 +7,7 @@
     <title>Clarternance - Accueil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 
 <body>
@@ -14,10 +15,12 @@
         /* Réécriture temporaire des couleurs en css classique (a faire ensuite via variables bootstrap) */
         nav {
             background-color: #1c191a;
+            font-family: "Cy Grotesk";
         }
 
-        header text {
+        .navbar-nav {
             color: #f4b324;
+            gap: 10px;
         }
 
         section {
@@ -29,17 +32,25 @@
             color: #f4b324 !important;
             font-size: 20px;
         }
+
+        h1 {
+            font-family: "Le Jour Serif";
+        }
+
+        .navbar-collapse {
+            flex-grow: 0.8;
+        }
     </style>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="assets/logo/clarternance.svg" alt="Logo" width="80" height="100"
+                <img src="assets/images/logo/clarternance.svg" alt="Logo" width="80" height="100"
                     class="d-inline-block align-text-top"
                     style="filter: invert(70%) sepia(39%) saturate(894%) hue-rotate(354deg) brightness(102%) contrast(91%);" />
-                <h1 class="h1" style="color: #f4b324;">Clarternance</h1>
+                <h1 class="h1" style="color: #f4b324;">CLARTERNANCE</h1>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Text</a>
                     </li>
@@ -50,9 +61,13 @@
                         <a class="nav-link disabled" aria-disabled="true">ETC</a>
                     </li>
                 </ul>
-                <div id="profile-wrapper" class="d-flex" role="profile">
-                    <a class="nav-link" href="#">Profil</a>
-                    <img src="assets/images/profile-exemple.webp" alt="profile-picture" width="50px">
+                <div id="profile-wrapper " class="d-flex gap-3 align-items-center" role="profile">
+                    <a class="nav-link text-center" href="#">Profil</a>
+                    <div class="text-center"
+                        style="border-radius: 45px;background-color: #f4b324; height: 75px; width: 75px;">
+                        <img class="img-fluid rounded-circle" src="assets/images/profile-exemple.jpg"
+                            alt="profile-picture" width="98%">
+                    </div>
                 </div>
             </div>
         </div>
