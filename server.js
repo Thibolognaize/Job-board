@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+const pgp = require('pg-promise')(/* options */)
+const db = pgp('postgres://admin:prrrout@localhost:5432/jobboard_db')
 // view engine is ejs
 app.set("view engine", "ejs")
 
