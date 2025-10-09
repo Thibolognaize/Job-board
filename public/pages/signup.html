@@ -51,21 +51,31 @@
                     <p class="m-0">Vous avez déjà un compte ?</p>
                     <a href="#">Connectez vous par ici !</a>
                 </div>
-                <div class="mb-3">
-                    <label for="username" class="form-label">*Username</label>
-                    <input type="text" class="form-control" id="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputEmail1" class="form-label">*Email</label>
-                    <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" required>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="username" class="form-label">*First Name</label>
+                        <input type="text" class="form-control"  aria-label="First name" required>
+                    </div>
+                    <div class="col">
+                        <label for="username" class="form-label">*Last Name</label>
+                        <input type="text" class="form-control" aria-label="Last name" required>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword1" class="form-label">*Mot de passe</label>
                     <input type="password" class="form-control" id="inputPassword1" required>
-                <span id="passwordHelpInline" class="form-text">
-                Votre mot de passe doit consister de 8 à 20 characters
-                </span>                </div>
-                <div class="text-center">
+                    <span id="passwordHelpInline" class="form-text">
+                        Votre mot de passe doit consister de 8 à 20 characters
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="inputEmail1" class="form-label">*Email</label>
+                    <input type="email" class="form-control" id="inputEmail1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputTel" class="form-label">Numéro Téléphone</label>
+                    <input type="email" class="form-control" id="inputTel">
+                </div>                <div class="text-center">
                     <button type="submit" id="connexion-button" class="btn rounded-5 bg-black p-3">CONNEXION</button>
                 </div>
             </form>
