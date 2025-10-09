@@ -2,30 +2,35 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const pgp = require('pg-promise')(/* options */)
-const db = pgp('postgres://admin:prrrout@localhost:5432/jobboard_db')
+const db = require('./db');
+
+app.use(express.json());
+
 // view engine is ejs
-app.set("view engine", "ejs")
+// app.set("view engine", "ejs")
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
-app.use(logger)
+// app.use(logger)
 
-// route for / renders index.html
-app.get("/", (req, res) => {
-    res.render("index")
-})
+// // route for / renders index.html
+// app.get("/", (req, res) => {
+//     res.render("index")
+// })
 
-// Toutes les routes d'user
+// // Toutes les routes d'user
 const userRouter = require("./routes/user")
 
-// Routes utilisées
-app.use("/user", userRouter)
+// // Routes utilisées
+app.use("/users", userRouter)
 
-function logger(req, res, next) {
-    console.log(req.originalUrl)
-    next()
-}
+// function logger(req, res, next) {
+//     console.log(req.originalUrl)
+//     next()
+// }
 
 // port listening is 3000
-app.listen(port);
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`)
+    db ? console.log(`Database is connected`) : console.log(`Database is not found`)
+});
