@@ -7,16 +7,25 @@ const db = require('./models/db');
 app.use(express.json());
 
 // view engine is ejs
-// app.set("view engine", "ejs")
+app.set("view engine", "ejs")
 
-// app.use(express.static('public'))
+app.use(express.static('public'))
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(__dirname + '/public/favicon.ico');
+});
 
 // app.use(logger)
 
-// // route for / renders index.html
-// app.get("/", (req, res) => {
-//     res.render("index")
-// })
+// route for / renders index.html
+app.get("/", (req, res) => {
+    res.render("index")
+})
+
+app.get("/login", (req, res) => {
+    res.render("login")
+})
+
 
 // // Toutes les routes d'user
 const userRouter = require("./routes/User")
