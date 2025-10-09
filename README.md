@@ -98,6 +98,6 @@ Job-board/
 - `/login` : Page de connexion
 - `/signup` : Page d’inscription
 
-*(À compléter selon les routes réelles de ton projet.)*
+*(À compléter)*
 
 ---
