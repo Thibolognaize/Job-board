@@ -19,3 +19,15 @@
     src: url("../assets/fonts/Garet-Heavy.otf");
     font-weight: bold;
 }
+
+.title {
+    font-family: "Le Jour Serif";
+}
+
+main {
+    font-family: "Garet";
+}
+
+body {
+    font-family: "Cy Grotesk";
+}

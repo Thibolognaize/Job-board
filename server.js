@@ -9,6 +9,7 @@ app.use(express.json());
 // view engine is ejs
 app.set("view engine", "ejs")
 
+// 
 app.use(express.static('public'))
 
 app.get('/favicon.ico', (req, res) => {
