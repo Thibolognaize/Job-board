@@ -1,10 +1,11 @@
-// const express = require("express");
-// const router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-// router.get("/", (req, res) => {
-//     res.send("list of all users")
-// });
+const controller = require("../controllers/UserController")
 
+router.get("/", controller.get);
+
+module.exports = router;
 // router.post("/login", (req, res) => {
 //     res.send("Formulaire de login")
 // });
@@ -26,5 +27,3 @@
 //     .delete((req, res) => {
 //         res.send(`Page de profile pour l'id ${req.params.id}`)
 //     })
-
-// module.exports = router;

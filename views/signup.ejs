@@ -5,45 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clarternance - Accueil</title>
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fonts.css">
 </head>
 
 <body style="height: 100vh; margin: 0; padding: 0;">
     <style>
-        body{
+        body {
             background-color: #f4b324;
             color: #1c191a;
         }
 
-        h1{
+        h1 {
             font-family: "Le Jour Serif";
             color: #1c191a;
         }
 
-        label{
+        label {
             font-family: "Garet";
             color: #1c191a;
         }
 
-        a,p{
+        a,
+        p {
             font-family: "Cy Grotesk";
             font-size: small;
             color: #1c191a;
         }
 
-        #connexion-button{
+        #connexion-button {
             font-family: "Garet";
             font-weight: bold;
-            color:#f6e7d8 ;
+            color: #f6e7d8;
         }
-
     </style>
-    
+
     <div class="container h-100 d-flex align-items-center justify-content-center">
         <div class="bg-light bg-opacity-25 p-5 rounded-5">
             <a class="d-flex align-items-center link-underline link-underline-opacity-0" href="#">
-                <img src="/public/assets/images/logo/clarternance.svg" alt="Logo" width="60">
+                <img src="/assets/images/logo/clarternance.svg" alt="Logo" width="60">
                 <h1>CLARTERNANCE</h1>
             </a>
             <form>
@@ -54,7 +54,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="username" class="form-label">*First Name</label>
-                        <input type="text" class="form-control"  aria-label="First name" required>
+                        <input type="text" class="form-control" aria-label="First name" required>
                     </div>
                     <div class="col">
                         <label for="username" class="form-label">*Last Name</label>
@@ -75,15 +75,16 @@
                 <div class="mb-3">
                     <label for="inputTel" class="form-label">Numéro Téléphone</label>
                     <input type="email" class="form-control" id="inputTel">
-                </div>                <div class="text-center">
+                </div>
+                <div class="text-center">
                     <button type="submit" id="connexion-button" class="btn rounded-5 bg-black p-3">CONNEXION</button>
                 </div>
             </form>
         </div>
     </div>
-    
 
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>
