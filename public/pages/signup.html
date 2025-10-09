@@ -47,23 +47,24 @@
                 <h1>CLARTERNANCE</h1>
             </a>
             <form>
-                <div id="signIn" class="mb-2 form-text text-center">
+                <div id="signIn" class="mb-4 form-text text-center">
                     <p class="m-0">Vous avez déjà un compte ?</p>
                     <a href="#">Connectez vous par ici !</a>
                 </div>
                 <div class="mb-3">
-                    <label for="inputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+                    <label for="username" class="form-label">*Username</label>
+                    <input type="text" class="form-control" id="username" required>
                 </div>
                 <div class="mb-3">
-                    <label for="inputPassword1" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="inputPassword1">
-                    <a href="#" class="form-text mb-1"> Mot de Passe oublie ?</a>
+                    <label for="inputEmail1" class="form-label">*Email</label>
+                    <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" required>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="Check1">
-                    <label class="form-check-label border-black" for="Check1">Rester connecté-e</label>
-                </div>
+                <div class="mb-3">
+                    <label for="inputPassword1" class="form-label">*Mot de passe</label>
+                    <input type="password" class="form-control" id="inputPassword1" required>
+                <span id="passwordHelpInline" class="form-text">
+                Votre mot de passe doit consister de 8 à 20 characters
+                </span>                </div>
                 <div class="text-center">
                     <button type="submit" id="connexion-button" class="btn rounded-5 bg-black p-3">CONNEXION</button>
                 </div>
