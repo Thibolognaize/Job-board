@@ -1,19 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db");
-const { errors } = require("pg-promise");
 
-router.get("/", (req, res) => {
-    db.any("SELECT * FROM users;")
-    .then(rows => {
-        console.log(rows);
-        res.json(rows)
-    })
-    .catch(error => {
-        console.log(error)
-    })
-});
+const controller = require("../controllers/UserController")
 
+router.get("/", controller.get);
+
+module.exports = router;
 // router.post("/login", (req, res) => {
 //     res.send("Formulaire de login")
 // });
@@ -35,5 +27,3 @@ router.get("/", (req, res) => {
 //     .delete((req, res) => {
 //         res.send(`Page de profile pour l'id ${req.params.id}`)
 //     })
-
-module.exports = router;

@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const db = require('./db');
+const db = require('./models/db');
 
 app.use(express.json());
 
@@ -19,7 +19,7 @@ app.use(express.json());
 // })
 
 // // Toutes les routes d'user
-const userRouter = require("./routes/user")
+const userRouter = require("./routes/User")
 
 // // Routes utilisées
 app.use("/users", userRouter)
