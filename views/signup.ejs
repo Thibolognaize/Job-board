@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clarternance - Accueil</title>
+    <title>Clarternance - Signup</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fonts.css">
 </head>
@@ -41,39 +41,40 @@
     </style>
 
     <div class="container h-100 d-flex align-items-center justify-content-center">
-        <div class="bg-light bg-opacity-25 p-5 rounded-5">
-            <a class="d-flex align-items-center link-underline link-underline-opacity-0" href="#">
+        <div class="bg-light bg-opacity-25 p-5 rounded-5" style="width: 500px;">
+            <div class="d-flex align-items-center justify-content-center" href="#">
                 <img src="/assets/images/logo/clarternance.svg" alt="Logo" width="60">
-                <h1>CLARTERNANCE</h1>
-            </a>
+                <h1 class="text-capitalize">Clarternance</h1>
+            </div>
             <form>
                 <div id="signIn" class="mb-4 form-text text-center">
                     <p class="m-0">Vous avez déjà un compte ? <a href="#">Connectez vous par ici</a></p>
-                    <p class="m-0">Vous êtes une entreprise ? <a href="#">Créez votre compte enterprise par ici</a></p>
+                    <p class="m-0">Vous êtes une entreprise ? <a href="#">Créez votre compte enterprise</a></p>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="username" class="form-label">*First Name</label>
-                        <input type="text" class="form-control" aria-label="First name" required>
+                        <label for="first-name" class="form-label">Prénom</label>
+                        <input type="text" id="first-name" name="first-name" class="form-control"
+                            aria-label="first-name" required>
                     </div>
                     <div class="col">
-                        <label for="username" class="form-label">*Last Name</label>
-                        <input type="text" class="form-control" aria-label="Last name" required>
+                        <label for="last-name" class="form-label">Nom</label>
+                        <input type="text" id="last-name" name="last-name" class="form-control" aria-label="last-name"
+                            required>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="inputPassword1" class="form-label">*Mot de passe</label>
+                    <div class="mb-3">
+                        <label for="inputEmail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="inputEmail1" required>
+                    </div>
+                    <label for="inputPassword1" class="form-label">Mot de passe</label>
                     <input type="password" class="form-control" id="inputPassword1" required>
-                    <span id="passwordHelpInline" class="form-text">
-                        Votre mot de passe doit consister de 8 à 20 characters
-                    </span>
+                    <em id="passwordHelpInline" class="form-text">Votre mot de passe doit contenir de 8 à 20
+                        carcactères</em>
                 </div>
                 <div class="mb-3">
-                    <label for="inputEmail1" class="form-label">*Email</label>
-                    <input type="email" class="form-control" id="inputEmail1" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputTel" class="form-label">Numéro Téléphone</label>
+                    <label for="inputTel" class="form-label">Téléphone</label>
                     <input type="email" class="form-control" id="inputTel">
                 </div>
                 <div class="text-center">
