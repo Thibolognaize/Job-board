@@ -49,3 +49,6 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
     db ? console.log(`Database is connected`) : console.log(`Database is not found`)
 });
+
+//middleware acces info forms
+app.use(express.urlencoded({extended: true}))
