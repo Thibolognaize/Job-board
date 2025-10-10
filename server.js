@@ -33,16 +33,13 @@ app.get("/login", (req, res) => {
     res.render("login")
 })
 
-app.get("/advertisements", (req, res) => {
-    res.render("advertisements")
-})
+// Tous nos routers
+const userRouter = require("./routes/User");
+const advertisementRouter = require("./routes/Advertisement");
 
-// // Toutes les routes d'user
-const userRouter = require("./routes/User")
-
-// Routes utilisées
-app.use("/user", userRouter)
-
+// Nos routes utilisées
+app.use("/user", userRouter);
+app.use("/advertisements", advertisementRouter);
 
 
 // port listening is 3000
