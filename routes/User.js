@@ -5,9 +5,9 @@ const controller = require("../controllers/UserController")
 
 router.get("/", controller.get);
 module.exports = router;
-// router.post("/login", (req, res) => {
-//     res.send("Formulaire de login")
-// });
+router.post("/login", (req, res) => {
+    console.log(req.body.email)
+});
 
 // // Route pour register l'user
 // router.post("/", (req, res) => {
