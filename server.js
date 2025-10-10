@@ -29,10 +29,6 @@ app.get("/register", (req, res) => {
     res.render("register")
 })
 
-app.get("/login", (req, res) => {
-    res.render("login")
-})
-
 app.get("/advertisements", (req, res) => {
     res.render("advertisements")
 })
@@ -40,9 +36,12 @@ app.get("/advertisements", (req, res) => {
 // // Toutes les routes d'user
 const userRouter = require("./routes/User")
 
+//middleware acces info forms
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
 // Routes utilisées
 app.use("/user", userRouter)
-
 
 
 // port listening is 3000
@@ -50,6 +49,3 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
     db ? console.log(`Database is connected`) : console.log(`Database is not found`)
 });
-
-//middleware acces info forms
-app.use(express.urlencoded({extended: true}))
