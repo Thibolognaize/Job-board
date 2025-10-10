@@ -25,14 +25,17 @@ app.get("/login", (req, res) => {
     res.render("login")
 })
 
-app.get("/signup", (req, res) => {
-    res.render("signup")
+app.get("/register", (req, res) => {
+    res.render("register")
 })
 
 app.get("/login", (req, res) => {
     res.render("login")
 })
 
+app.get("/advertisements", (req, res) => {
+    res.render("advertisements")
+})
 
 // // Toutes les routes d'user
 const userRouter = require("./routes/User")
