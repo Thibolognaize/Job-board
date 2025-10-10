@@ -33,6 +33,11 @@ app.get("/register", (req, res) => {
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");
 
+
+//middleware acces info forms
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
 // Nos routes utilisées
 app.use("/user", userRouter);
 app.use("/advertisements", advertisementRouter);
@@ -43,6 +48,3 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
     db ? console.log(`Database is connected`) : console.log(`Database is not found`)
 });
-
-//middleware acces info forms
-app.use(express.urlencoded({extended: true}))
