@@ -2,6 +2,7 @@ const db = require("../models/db");
 const { errors } = require("pg-promise");
 
 module.exports = {
+    // Définition du comportement des routes
     get: (req, res) => {
         const advertisement = db.any("SELECT * FROM advertisements")
             .then((advertisements) => {
@@ -13,9 +14,10 @@ module.exports = {
             });
     },
     getCreateAdvertisement: (req, res) => {
-        res.render("advertisements/create", );
+        res.render("advertisements/create");
     },
-    // Submission du formulaire de creation d
+
+    // Submission du formulaire de creation d'advertisement
     post: (req, res) => {
         const { title, description } = req.body;
         db.none("INSERT INTO advertisements(title, description) VALUES($1, $2)", [title, description])
@@ -29,6 +31,7 @@ module.exports = {
                 });
             })
             .catch((error) => {
+                // Cas d'erreur
                 console.error("Erreur lors de l'ajout de l'annonce :", error);
                 res.render("advertisements/create", {
                     title: title,

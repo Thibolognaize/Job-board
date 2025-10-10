@@ -19,66 +19,39 @@
                     <div class="w-100">
                         <h2 class="pt-2">Nos offres:</h2>
                     </div>
-                    <div class="card mt-3 w-95">
-                        <div class="card-header">
-                            Entreprise 1
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Nom du profil recherché</h5>
-                            <p class="card-text">Rapide description</p>
-                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                        </div>
-                    </div>
-
-                    <div class="card mt-3 w-95">
-                        <div class="card-header">
-                            Entreprise 2
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Nom du profil recherché</h5>
-                            <p class="card-text">Rapide description</p>
-                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                        </div>
-                    </div>
-
-                    <div class="card mt-3 w-95">
-                        <div class="card-header">
-                            Entreprise 3
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Nom du profil recherché</h5>
-                            <p class="card-text">Rapide description</p>
-                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                        </div>
-                    </div>
-
-                    <div class="card mt-3 w-95">
-                        <div class="card-header">
-                            Entreprise 4
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Nom du profil recherché</h5>
-                            <p class="card-text">Rapide description</p>
-                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                        </div>
-                    </div>
+                    <!-- Début de l'affichage dynamique -->
+                    <% if (advertisements.length> 0) { %>
+                        <% advertisements.forEach((advertisement)=> { %>
+                            <div class="card mt-3 w-95">
+                                <div class="card-header">
+                                    Entreprise 1
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= advertisement.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= advertisement.description %>
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                                </div>
+                            </div>
+                            <% }); %>
+                                <% } else { %>
+                                    <p>Aucune annonce trouvée.</p>
+                                    <% } %>
                 </div>
-
                 <div class="right-side min-vh-100 w-50 border-left d-flex flex-column pb-5">
                     <div class="container w-100 h-100 pt-3">
                         <span class="d-flex w-100">
                             <img src="" alt="logo" width="100px" height="100px">
                             <h2 class="pt-2  text-center">Titre offre</h2>
                         </span>
-
                     </div>
                 </div>
             </div>
         </main>
-
         <%- include("../partials/footer") %>
-
-
             <!-- Scripts bootstrap -->
             <script src="/js/bootstrap.bundle.min.js"></script>
             <script src="/js/bootstrap.min.js"></script>

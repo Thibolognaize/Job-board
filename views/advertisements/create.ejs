@@ -39,17 +39,8 @@
             </div>
         </main>
 
-        <% if (locals.success || locals.error) { %>
-            <script>
-                // Masquer l'alerte après 5 secondes
-                setTimeout(() => {
-                    document.getElementById("alertMessage").style.display = "none";
-                }, 5000);
-            </script>
-            <% } %>
-
-                <%- include("../partials/footer") %>
-                    <script src="/js/bootstrap.bundle.min.js"></script>
+        <%- include("../partials/footer") %>
+            <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
