@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 
 const db = require('./models/db');
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
@@ -36,6 +37,7 @@ app.get("/login", (req, res) => {
 // Tous nos routers
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");
+
 
 // Nos routes utilisées
 app.use("/user", userRouter);

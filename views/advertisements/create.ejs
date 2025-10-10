@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une annonce</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <style>
+        nav {
+            background-color: #1c191a;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f4b324 !important;
+            font-size: 20px;
+        }
+
+        body {
+            background-color: #f4b224;
+        }
+
+        .profile-avatar {
+            border-radius: 45px;
+            background-color: #f4b324;
+            height: 75px;
+            width: 75px;
+            overflow: hidden;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.25);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="/assets/images/logo/clarternance.svg" alt="Logo" width="80" height="100"
+                    style="filter: invert(70%) sepia(39%) saturate(894%) hue-rotate(354deg) brightness(102%) contrast(91%);" />
+                <h1 class="h1 title text-uppercase ms-3" style="color: #f4b324;">Clarternance</h1>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/advertisements">Annonces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-1 align-items-center">
+                    <a class="nav-link text-center" href="/login">Profil</a>
+                    <div class="profile-avatar">
+                        <img class="img-fluid rounded-circle" src="/assets/images/default-avatar.webp"
+                            alt="profile-picture">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container p-5 h-100 d-flex flex-column align-items-center justify-content-center">
+        <div class="form-container w-100" style="max-width: 600px;">
+            <form class="d-flex flex-column" method="POST" action="/advertisements">
+                <h1 class="text-center mb-5">Créer une nouvelle annonce</h1>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Titre de l'annonce</label>
+                    <input type="text" id="title" name="title" class="form-control"
+                        value="<%= typeof locals.title !== 'undefined' ? locals.title : '' %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" name="description" rows="10" class="form-control"
+                        required><%= typeof locals.description !== 'undefined' ? locals.description : '' %></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Poster</button>
+            </form>
+            <% if (locals.success || locals.error) { %>
+                <div class="alert alert-<%= locals.success ? 'success' : 'danger' %> mt-3" id="alertMessage">
+                    <%= locals.message %>
+                        <a href="<%= locals.link %>" class="alert-link">Retour à la liste des annonces</a>
+                </div>
+                <% } %>
+        </div>
+    </div>
+    <footer class="p-3 bg-light mt-auto">
+        <div class="container">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Accueil</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Fonctionnalités</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Tarifs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">À propos</a></li>
+            </ul>
+            <p class="mb-0 text-center text-body-secondary">© 2025 Clarternance, Inc</p>
+        </div>
+    </footer>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <% if (locals.success || locals.error) { %>
+        <script>
+            // Masquer l'alerte après 5 secondes
+            setTimeout(() => {
+                document.getElementById("alertMessage").style.display = "none";
+            }, 5000);
+        </script>
+        <% } %>
+</body>
+
+</html>

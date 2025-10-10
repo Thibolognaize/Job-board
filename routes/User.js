@@ -4,7 +4,6 @@ const router = express.Router();
 const controller = require("../controllers/UserController")
 
 router.get("/", controller.get);
-
 module.exports = router;
 // router.post("/login", (req, res) => {
 //     res.send("Formulaire de login")
