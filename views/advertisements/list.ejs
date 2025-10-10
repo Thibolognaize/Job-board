@@ -7,175 +7,81 @@
     <title>Clarternance - Annonces</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/global.css">
 </head>
 
 <body>
-    <style>
-        /* Réécriture temporaire des couleurs en css classique (a faire ensuite via variables bootstrap) */
-        nav {
-            background-color: #1c191a;
-        }
+    <%- include('../partials/header') %>
+        <main class="h-100">
+            <div style="background-color: #f6e7d8c6;" class="container d-flex">
+                <div
+                    class="left-side w-50 min-vh-100 d-flex flex-column border-end border-black align-items-center pb-5">
+                    <div class="w-100">
+                        <h2 class="pt-2">Nos offres:</h2>
+                    </div>
+                    <div class="card mt-3 w-95">
+                        <div class="card-header">
+                            Entreprise 1
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du profil recherché</h5>
+                            <p class="card-text">Rapide description</p>
+                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                        </div>
+                    </div>
 
-        .navbar-nav {
-            color: #f4b324;
-        }
+                    <div class="card mt-3 w-95">
+                        <div class="card-header">
+                            Entreprise 2
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du profil recherché</h5>
+                            <p class="card-text">Rapide description</p>
+                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                        </div>
+                    </div>
 
-        main {
-            height: 100vh;
-        }
+                    <div class="card mt-3 w-95">
+                        <div class="card-header">
+                            Entreprise 3
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du profil recherché</h5>
+                            <p class="card-text">Rapide description</p>
+                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                        </div>
+                    </div>
 
-        .nav-link {
-            color: #f4b324 !important;
-            font-size: 20px;
-        }
+                    <div class="card mt-3 w-95">
+                        <div class="card-header">
+                            Entreprise 4
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du profil recherché</h5>
+                            <p class="card-text">Rapide description</p>
+                            <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                        </div>
+                    </div>
+                </div>
 
-        .search-bar {
-            max-width: 500px;
-            margin: auto auto;
-        }
+                <div class="right-side min-vh-100 w-50 border-left d-flex flex-column pb-5">
+                    <div class="container w-100 h-100 pt-3">
+                        <span class="d-flex w-100">
+                            <img src="" alt="logo" width="100px" height="100px">
+                            <h2 class="pt-2  text-center">Titre offre</h2>
+                        </span>
 
-        .search-bar .input-group {
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-bar .form-control {
-            border: none;
-            padding-left: 20px;
-        }
-
-        .search-bar .btn {
-            border: none;
-        }
-
-        .navbar-brand {
-            margin-right: 2rem !important;
-        }
-
-        #search-section {
-            height: 500px;
-        }
-
-        .img-card {
-            height: 225px;
-        }
-
-        body {
-            background-color: #f4b224;
-        }
-    </style>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="/">
-                <img src="assets/images/logo/clarternance.svg" alt="Logo" width="80" height="100"
-                    class="d-inline-block align-text-top"
-                    style="filter: invert(70%) sepia(39%) saturate(894%) hue-rotate(354deg) brightness(102%) contrast(91%);" />
-                <h1 class="h1 title text-uppercase" style="color: #f4b324;">Clarternance</h1>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Text</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Text plus long</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">ETC</a>
-                    </li>
-                </ul>
-                <div id="profile-wrapper " class="d-flex gap-1 align-items-center" role="profile">
-                    <a class="nav-link text-center" href="/login">Profil</a>
-                    <div class="text-left"
-                        style="border-radius: 45px;background-color: #f4b324; height: 75px; width: 75px;">
-                        <img class="img-fluid rounded-circle" src="/assets/images/default-avatar.webp"
-                            alt="profile-picture" width="95%">
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </main>
 
-    <main class="h-100">
-        <div style="background-color: #f6e7d8c6;" class="container d-flex">
-            <div class="left-side w-50 min-vh-100 d-flex flex-column border-end border-black align-items-center pb-5">
-                <div class="w-100">
-                    <h2 class="pt-2">Nos offres:</h2>
-                </div>
-                <div class="card mt-3 w-95">
-                    <div class="card-header">
-                        Entreprise 1
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nom du profil recherché</h5>
-                        <p class="card-text">Rapide description</p>
-                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                    </div>
-                </div>
+        <%- include("../partials/footer") %>
 
-                <div class="card mt-3 w-95">
-                    <div class="card-header">
-                        Entreprise 2
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nom du profil recherché</h5>
-                        <p class="card-text">Rapide description</p>
-                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                    </div>
-                </div>
 
-                <div class="card mt-3 w-95">
-                    <div class="card-header">
-                        Entreprise 3
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nom du profil recherché</h5>
-                        <p class="card-text">Rapide description</p>
-                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                    </div>
-                </div>
-
-                <div class="card mt-3 w-95">
-                    <div class="card-header">
-                        Entreprise 4
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nom du profil recherché</h5>
-                        <p class="card-text">Rapide description</p>
-                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="right-side min-vh-100 w-50 border-left d-flex flex-column pb-5">
-                <div class="container w-100 h-100 pt-3">
-                    <span class="d-flex w-100">
-                        <img src="" alt="logo" width="100px" height="100px">
-                        <h2 class="pt-2  text-center">Titre offre</h2>
-                    </span>
-
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class=" p-3 bg-light">
-        <div class="container">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-            </ul>
-            <p class="mb-0 text-center text-body-secondary">© 2025 Clarternance, Inc</p>
-        </div>
-    </footer>
-
-    <!-- Scripts bootstrap -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+            <!-- Scripts bootstrap -->
+            <script src="/js/bootstrap.bundle.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>
