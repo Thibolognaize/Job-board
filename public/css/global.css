@@ -1,0 +1,51 @@
+/* Réécriture temporaire des couleurs en css classique (a faire ensuite via variables bootstrap) */
+/* index style */
+header {
+    background-color: #1c191a;
+}
+
+.navbar-nav {
+    color: #f4b324;
+}
+
+main {
+    height: 100vh;
+    background-color: #f4b324;
+}
+
+.nav-link {
+    color: #f4b324 !important;
+    font-size: 20px;
+}
+
+.search-bar {
+    max-width: 500px;
+    margin: auto auto;
+}
+
+.search-bar .input-group {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar .form-control {
+    border: none;
+    padding-left: 20px;
+}
+
+.search-bar .btn {
+    border: none;
+}
+
+.navbar-brand {
+    margin-right: 2rem !important;
+}
+
+#search-section {
+    height: 500px;
+}
+
+.img-card {
+    height: 225px;
+}
