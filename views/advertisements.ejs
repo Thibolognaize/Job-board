@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clarternance - Annonces</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 
 <body>
@@ -22,7 +22,6 @@
 
         main {
             height: 100vh;
-            background-color: #f4b324;
         }
 
         .nav-link {
@@ -61,6 +60,15 @@
         .img-card {
             height: 225px;
         }
+
+        .right-side {
+            /* border-left: 2px solid rgba(0, 0, 0, 0.189); */
+            /* min-height: 500px; */
+        }
+
+        .left-side {
+            /* min-height: 500px; */
+        }
     </style>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -94,11 +102,70 @@
         </div>
     </nav>
 
-    <main>
+    <main class="h-100">
+        <div style="background-color: rgba(220, 219, 219, 0.61);" class="container d-flex">
+            <div class="left-side w-50 min-vh-100 d-flex flex-column border-end border-black align-items-center pb-5">
+                <div class="w-100">
+                    <h2 class="pt-2">Nos offres:</h2>
+                </div>
+                <div class="card mt-3 w-95">
+                    <div class="card-header">
+                        Entreprise 1
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Nom du profil recherché</h5>
+                        <p class="card-text">Rapide description</p>
+                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                    </div>
+                </div>
 
+                <div class="card mt-3 w-95">
+                    <div class="card-header">
+                        Entreprise 2
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Nom du profil recherché</h5>
+                        <p class="card-text">Rapide description</p>
+                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                    </div>
+                </div>
+
+                <div class="card mt-3 w-95">
+                    <div class="card-header">
+                        Entreprise 3
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Nom du profil recherché</h5>
+                        <p class="card-text">Rapide description</p>
+                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                    </div>
+                </div>
+
+                <div class="card mt-3 w-95">
+                    <div class="card-header">
+                        Entreprise 4
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Nom du profil recherché</h5>
+                        <p class="card-text">Rapide description</p>
+                        <a href="#" class="btn btn-primary">Voir l'annonce</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-side min-vh-100 w-50 border-left d-flex flex-column pb-5">
+                <div class="container w-100 h-100 pt-3">
+                    <span class="d-flex w-100">
+                        <img src="" alt="logo" width="100px" height="100px">
+                        <h2 class="pt-2  text-center">Titre offre</h2>
+                    </span>
+
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer class="mt-5 p-3 bg-light">
+    <footer class=" p-3 bg-light">
         <div class="container">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
