@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS companies (
 
 CREATE TABLE IF NOT EXISTS advertisements (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
+    title VARCHAR(255),
     description TEXT,
     views INT,
     img_path VARCHAR(255),
-    is_active BOOLEAN,
+    is_active BOOLEAN DEFAULT TRUE,
     last_update TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     companies_id INT,
     FOREIGN KEY (companies_id) REFERENCES companies (id)
