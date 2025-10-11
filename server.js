@@ -43,8 +43,6 @@ app.use(express.urlencoded({extended: true}))
 app.use("/user", userRouter);
 app.use("/advertisements", advertisementRouter);
 
-
-
 // port listening is 3000
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
