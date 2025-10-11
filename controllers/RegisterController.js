@@ -5,27 +5,22 @@ const { errors } = require("pg-promise");
 module.exports = {
     register: async (req, res) => {
         try {
+            const fname_input = req.body.fname;
+            const lname_input = req.body.lname;
             const email_input = req.body.email;
             const password_input = req.body.password;
 
-            console.log(email_input , "--", password_input);
-
-            // oneOrNone : soit l'objet soit null
             const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email_input]);
 
             if (!user) {
-                return res.send("profile not found");
+                await db.none("INSERT INTO users VALUES (DEFAULT,$1,$2,$3,NULL,DEFAULT,NULL,$4,NULL,NULL,NULL,NULL,DEFAULT)",[fname_input,lname_input,email_input,password_input])
+                return res.send("person added");
             }
-
-            //acces au donné en pbjet c'est comme ça du coup c'est permis
-            if (user.password === password_input) {
-                return res.send("login successful");
-            } else {
-                return res.send("password incorrect");
-            }
+            
+            return res.send("this email is already used");
 
         } catch (error) {
-            console.error("Erreur lors de la vérification du profil :", error);
+            console.error("Erreur lors de la vérification du profil :", error); //<------------ message à changer
             res.status(500).send("Erreur serveur");
         }
     }
