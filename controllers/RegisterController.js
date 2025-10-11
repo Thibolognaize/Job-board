@@ -20,7 +20,7 @@ module.exports = {
             return res.send("this email is already used");
 
         } catch (error) {
-            console.error("Erreur lors de la vérification du profil :", error); //<------------ message à changer
+            console.error("Erreur lors de l'inscription :", error); //<------------ message à changer
             res.status(500).send("Erreur serveur");
         }
     }
