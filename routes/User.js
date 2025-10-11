@@ -2,12 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const controller = require("../controllers/UserController")
+const loginController = require("../controllers/LoginController"); //comme notre formulaire recup avec /user/login j'ai ajouté ici
 
 router.get("/", controller.get);
-router.post("/login", (req, res) => {
-    console.log(req.body.email)
-    console.log(req.body.password);
-    res.send("Login reçu !");
-});
+router.post("/login", loginController.login);
 
 module.exports = router;

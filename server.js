@@ -7,6 +7,7 @@ const db = require('./models/db');
 // middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //necessaire pour la recup des données de formulaire
 
 // view engine is ejs
 app.set("view engine", "ejs")
@@ -41,6 +42,7 @@ app.use(express.urlencoded({extended: true}))
 // Nos routes utilisées
 app.use("/user", userRouter);
 app.use("/advertisements", advertisementRouter);
+
 
 
 // port listening is 3000
