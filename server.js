@@ -29,19 +29,13 @@ app.get("/register", (req, res) => {
     res.render("register")
 })
 
-app.get("/advertisements", (req, res) => {
-    res.render("advertisements")
-})
+// Tous nos routers
+const userRouter = require("./routes/User");
+const advertisementRouter = require("./routes/Advertisement");
 
-// // Toutes les routes d'user
-const userRouter = require("./routes/User")
-
-//middleware acces info forms
-app.use(express.json());
-app.use(express.urlencoded({extended: true}))
-
-// Routes utilisées
-app.use("/user", userRouter)
+// Nos routes utilisées
+app.use("/user", userRouter);
+app.use("/advertisements", advertisementRouter);
 
 
 // port listening is 3000
