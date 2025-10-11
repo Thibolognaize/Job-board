@@ -1,6 +1,6 @@
 const db = require("../models/db");
 const { errors } = require("pg-promise");
-//const bcrypt = require("bcrypt"); 
+const bcrypt = require("bcrypt"); 
 
 module.exports = {
     register: async (req, res) => {
@@ -8,7 +8,9 @@ module.exports = {
             const fname_input = req.body.fname;
             const lname_input = req.body.lname;
             const email_input = req.body.email;
-            const password_input = req.body.password;
+            
+            const saltRounds = 10; //Le nombre de tours de hachage
+            const password_input = await bcrypt.hash(req.body.password,saltRounds);
 
             const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email_input]);
 
