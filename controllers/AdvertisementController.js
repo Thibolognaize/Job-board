@@ -3,7 +3,10 @@ const { errors } = require("pg-promise");
 
 module.exports = {
     // Définition du comportement des routes
-    get: (req, res) => {
+    createAdvertisement: (req, res) => {
+        res.render("advertisements/create");
+    },
+    getAll: (req, res) => {
         const advertisement = db.any("SELECT * FROM advertisements")
             .then((advertisements) => {
                 res.render("advertisements/list", { advertisements });
@@ -13,8 +16,29 @@ module.exports = {
                 res.status(500).send("Erreur serveur");
             });
     },
-    getCreateAdvertisement: (req, res) => {
-        res.render("advertisements/create");
+    // Récupération du Json d'un seul pour l'affichage des données 
+    getAdvertisementJson: (req, res) => {
+        const id = req.params.id;
+        const query = `
+            SELECT
+                a.*,
+                c.name AS company_name,
+                c.website,
+                c.contact,
+                c.address,
+                c.city
+            FROM advertisements a
+            LEFT JOIN companies c ON a.companies_id = c.id
+            WHERE a.id = $1
+        `;
+        db.one(query, [id])
+            .then((advertisement) => {
+                res.json(advertisement);
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la récupération de l'annonce :", error);
+                res.status(500).json({ error: "Erreur serveur" });
+            });
     },
 
     // Submission du formulaire de creation d'advertisement
