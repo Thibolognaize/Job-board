@@ -3,42 +3,29 @@ const app = express();
 const port = 3000;
 
 const db = require('./models/db');
-app.use(express.urlencoded({ extended: true }));
 
+// middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //necessaire pour la recup des données de formulaire
 
 // view engine is ejs
 app.set("view engine", "ejs")
 
-// 
+// serve the public folder
 app.use(express.static('public'))
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(__dirname + '/public/favicon.ico');
 });
 
-// route 
+// Routes 
 app.get("/", (req, res) => {
     res.render("index")
-})
-
-app.get("/login", (req, res) => {
-    res.render("login")
-})
-
-app.get("/register", (req, res) => {
-    res.render("register")
 })
 
 // Tous nos routers
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");
-
-
-//middleware acces info forms
-app.use(express.json());
-app.use(express.urlencoded({extended: true}))
 
 // Nos routes utilisées
 app.use("/user", userRouter);

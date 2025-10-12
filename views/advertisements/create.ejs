@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="/css/global.css">
 </head>
 
-<body>
+<body class="vh-100">
     <%- include("../partials/header") %>
-        <main class="h-100 py-5">
+        <main class="h-75 py-5">
             <div class="container  d-flex flex-column align-items-center justify-content-center">
                 <div class="form-container w-100" style="max-width: 600px;">
                     <form class="d-flex flex-column" method="POST" action="/advertisements">
@@ -39,17 +39,8 @@
             </div>
         </main>
 
-        <% if (locals.success || locals.error) { %>
-            <script>
-                // Masquer l'alerte après 5 secondes
-                setTimeout(() => {
-                    document.getElementById("alertMessage").style.display = "none";
-                }, 5000);
-            </script>
-            <% } %>
-
-                <%- include("../partials/footer") %>
-                    <script src="/js/bootstrap.bundle.min.js"></script>
+        <%- include("../partials/footer") %>
+            <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
