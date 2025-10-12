@@ -5,7 +5,6 @@ const port = 3000;
 const db = require('./models/db');
 
 // middlewares
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //necessaire pour la recup des données de formulaire
 
@@ -23,21 +22,10 @@ app.get('/favicon.ico', (req, res) => {
 app.get("/", (req, res) => {
     res.render("index")
 })
-app.get("/login", (req, res) => {
-    res.render("login")
-})
-app.get("/register", (req, res) => {
-    res.render("register")
-})
 
 // Tous nos routers
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");
-
-
-//middleware acces info forms
-app.use(express.json());
-app.use(express.urlencoded({extended: true}))
 
 // Nos routes utilisées
 app.use("/user", userRouter);

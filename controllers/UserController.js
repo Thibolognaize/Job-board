@@ -3,7 +3,7 @@ const { errors } = require("pg-promise");
 const bcrypt = require("bcrypt"); 
 
 module.exports = {
-    get: (req, res) => {
+    getUsers: (req, res) => {
         db.any("SELECT * FROM users;")
         .then(rows => {
             console.log(rows);
@@ -12,6 +12,12 @@ module.exports = {
         .catch(error => {
             console.log(error);
         });
+    },
+    renderLogin: (req, res) => {
+        res.render("users/login");
+    },
+    renderRegister: (req, res) => {
+        res.render("users/register");
     },
     login: async (req, res) => {
         try {
