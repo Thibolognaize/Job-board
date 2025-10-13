@@ -10,7 +10,11 @@ app.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // Mettre a true pour HTTPS
+    cookie: {
+    secure: false, // Mettre à true pour HTTPS
+    httpOnly: true,
+    maxAge: null
+  }
 }));
 
 app.use(express.json());
@@ -27,7 +31,6 @@ app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });
-console.log("Secret Key:", process.env.SECRET_KEY);
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(__dirname + '/public/favicon.ico');
