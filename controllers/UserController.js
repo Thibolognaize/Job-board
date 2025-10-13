@@ -76,7 +76,7 @@ module.exports = {
 
             // Insère le nouvel utilisateur dans la base de données
             await db.none(
-                "INSERT INTO users VALUES (DEFAULT, $1, $2, $3, NULL, DEFAULT, NULL, $4, NULL, NULL, NULL, NULL, DEFAULT)",
+                "INSERT INTO users VALUES (DEFAULT, $1, $2, $3, NULL, DEFAULT, DEFAULT, NULL, $4, NULL, NULL, NULL, NULL, DEFAULT)",
                 [fname_input, lname_input, email_input, hashedPassword]
             );
 
