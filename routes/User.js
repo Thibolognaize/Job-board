@@ -11,6 +11,8 @@ router.post("/login", controller.login);
 router.get("/register", controller.renderRegister)
 router.post("/register", controller.register);
 
-router.get("/profil", controller.renderProfile)
+router.get("/profil", controller.renderProfil)
+router.post("/profil", controller.update);
+
 
 module.exports = router;
