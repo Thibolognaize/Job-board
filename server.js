@@ -1,10 +1,18 @@
 const express = require("express");
+const session = require("express-session");
 const app = express();
 const port = 3000;
 
 const db = require('./models/db');
 
 // middlewares
+app.use(session({
+  secret: "###",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // Mettre a true pour HTTPS
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //necessaire pour la recup des données de formulaire
 
