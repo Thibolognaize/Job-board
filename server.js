@@ -48,7 +48,6 @@ app.set("view engine", "ejs");
 
 // serve the public folder
 app.use(express.static('public'));
-
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(__dirname + '/public/favicon.ico');
 });
@@ -58,18 +57,15 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-// Route protégée par le middleware isAdmin
-app.get("/admin", (req, res) => {
-    res.render("admin");
-});
 
 // Tous nos routers
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");
-
+const adminRouter = require("./routes/Admin")
 // Nos routes utilisées
 app.use("/user", userRouter);
 app.use("/advertisements", advertisementRouter);
+app.use("/admin", adminRouter)
 
 // port listening is 3000
 app.listen(port, () => {
