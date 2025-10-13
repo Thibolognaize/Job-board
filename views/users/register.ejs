@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clarternance - Signup</title>
+    <title>Clarternance - Inscription</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fonts.css">
 </head>
@@ -39,49 +39,47 @@
             color: #f6e7d8;
         }
     </style>
-
     <div class="container h-100 d-flex align-items-center justify-content-center">
-        <div class="bg-light bg-opacity-25 p-5 rounded-5" style="width: 500px;">
-            <a href="/" class="d-flex align-items-center justify-content-center link-underline link-underline-opacity-0"
-                href="#">
+        <div class="bg-light bg-opacity-25 p-5 rounded-5">
+            <a href="/" class="d-flex align-items-center link-underline link-underline-opacity-0">
                 <img src="/assets/images/logo/clarternance.svg" alt="Logo" width="60">
                 <h1 class="text-uppercase">Clarternance</h1>
             </a>
-            <form action="/user/register" method="POST">
-                <div id="signIn" class="mb-4 form-text text-center link-underline link-underline-opacity-0">
-                    <p class="m-0">Vous avez déjà un compte ? <a href="/user/login">Connectez vous par ici</a></p>
-                    <p class="m-0">Vous êtes une entreprise ? <a href="#">Créez votre compte enterprise</a></p>
+            <!-- Affichage des erreurs -->
+            <% if (typeof error !=='undefined' && error) { %>
+                <div class="alert alert-danger mb-3">
+                    <%= error %>
                 </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="first-name" class="form-label">Prénom</label>
-                        <input type="text" id="first-name" name="fname" class="form-control" required>
-                    </div>
-                    <div class="col">
-                        <label for="last-name" class="form-label">Nom</label>
-                        <input type="text" id="last-name" name="lname" class="form-control" required>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="mb-3">
-                        <label for="inputEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="inputEmail" required>
-                    </div>
-                    <label for="inputPassword" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
-                    <em id="passwordHelpInline" class="form-text">Votre mot de passe doit contenir de 8 à 20
-                        carcactères</em>
-                </div>
-
-                <div class="text-center">
-                    <button type="submit" id="connexion-button"
-                        class="btn rounded-5 bg-black p-3 text-uppercase">Connexion</button>
-                </div>
-            </form>
+                <% } %>
+                    <form action="/user/register" method="POST">
+                        <div id="signIn" class="mb-2 form-text text-center">
+                            <p class="m-0">Vous avez déjà un compte ?</p>
+                            <a href="/user/login">Connectez-vous par ici !</a>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fname" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="fname" name="fname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lname" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="lname" name="lname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="connexion-button"
+                                class="btn rounded-5 bg-black p-3 text-uppercase">S'inscrire</button>
+                        </div>
+                    </form>
         </div>
     </div>
-
-
     <script src="/js/bootstrap.min.js"></script>
 </body>
 
