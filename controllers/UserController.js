@@ -23,6 +23,10 @@ module.exports = {
         res.render("users/register", { error: req.query.error });
     },
 
+    renderProfil: (req, res) => {
+        res.render("users/profil", { error: req.query.error });
+    },
+
     login: async (req, res) => {
         try {
             const email_input = req.body.email;
