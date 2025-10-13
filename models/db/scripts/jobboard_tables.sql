@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) NOT NULL,
     tel VARCHAR(20),
     role VARCHAR(50) DEFAULT user,
+    is_admin BOOLEAN NOT NULL DEFAULT false,
     got_license BOOLEAN,
     password VARCHAR(255) NOT NULL,
     profile_desc TEXT,
