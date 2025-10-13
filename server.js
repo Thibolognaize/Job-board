@@ -28,7 +28,7 @@ app.use(express.static('public'))
 
 // Middleware pour ajouter les données de la session à chaque vue
 app.use((req, res, next) => {
-  res.locals.user = req.session.user;
+  res.locals.user = req.session.user || null;
   next();
 });
 
@@ -41,6 +41,9 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
+app.get("/admin" ,(req,res) => {
+  res.send("Admin page")
+})
 // Tous nos routers
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");

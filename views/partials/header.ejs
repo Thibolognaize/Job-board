@@ -14,7 +14,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/advertisements/create">Ajouter une annonce</a>
                 </li>
-                <% if (user.isAdmin) { %>
+                <% if (user && user.isAdmin) { %>
                     <li class="nav-item">
                         <a class="nav-link text-uppercase" href="/admin">Admin</a>
                     </li>
