@@ -3,13 +3,19 @@
 header {
     background-color: #1c191a;
 }
+body {
+    min-height: 100vh;
+}
 
 .navbar-nav {
     color: #f4b324;
 }
 
+footer{
+    margin-top: auto;
+}
+
 main {
-    height: 100vh;
     background-color: #f4b324;
 }
 
@@ -55,4 +61,26 @@ main {
     background-color: rgba(255, 255, 255, 0.25);
     padding: 2rem;
     border-radius: 15px;
+}
+
+/* Admin styles */
+#admin-section {
+    background-color: #f4b324;
+}
+
+.admin-card {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    border: #1c191a;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.admin-card .card-body {
+    padding: 2rem;
+}
+
+
+.admin-card .btn-primary:hover {
+    background-color: #02160086;
 }

@@ -1,14 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clarternance - Admin</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/global.css">
 </head>
 
-<body>
-    <p>HEHO</p>
+<body class="d-flex flex-column min-vh-100">
+    <%- include('partials/header') %>
+        <main id="admin-section" class="container-fluid d-flex  flex-grow-1 text-center py-5">
+            <div class="container">
+                <h2 class="fw-bold fs-1 fs-md-5 text-uppercase">Panneau d'administration</h2>
+                <p class="fs-6 p-2">Gérez les utilisateurs et les annonces depuis ce tableau de bord</p>
+                <div class="admin-dashboard">
+                    <div class="row row-gap-3">
+                        <div class="col-md-4">
+                            <div class="admin-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Utilisateurs</h5>
+                                    <p class="card-text">Gérer les utilisateurs de la plateforme</p>
+                                    <a href="/user" class="btn btn-primary">Voir les utilisateurs</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="admin-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Annonces</h5>
+                                    <p class="card-text">Gérez les annonces publiées</p>
+                                    <a href="/admin/advertisements" class="btn btn-primary">Voir les annonces</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="admin-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Key words</h5>
+                                    <p class="card-text">CRUD keywords clées </p>
+                                    <a href="/admin/stats" class="btn btn-primary">Voir les statistiques</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="admin-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Key words</h5>
+                                    <p class="card-text">CRUD keywords clées </p>
+                                    <a href="/admin/stats" class="btn btn-primary">Voir les statistiques</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="admin-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Key words</h5>
+                                    <p class="card-text">CRUD keywords clées </p>
+                                    <a href="/admin/stats" class="btn btn-primary">Voir les statistiques</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <%- include("partials/footer") %>
+            <!-- Scripts bootstrap -->
+            <script src="/js/bootstrap.bundle.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>
