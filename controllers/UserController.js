@@ -31,6 +31,7 @@ module.exports = {
         try {
             const email_input = req.body.email;
             const password_input = req.body.password;
+            const remember = req.remember;
 
             // Recherche l'utilisateur par email
             const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [email_input]);
@@ -45,8 +46,17 @@ module.exports = {
                 req.session.user = {
                     id: user.id,
                     email: user.email,
+                    role : user.role,
                     isAdmin: user.is_admin || false
                 };
+
+            // Si l'utilisateur a coché "Rester connecté", définissez une date d'expiration pour la session
+            if (remember) {
+                req.session.cookie.maxAge = 3 * 24 * 60 * 60 * 1000; // 3 jours avant date d'expiration
+            } else {
+                // Sinon, la session expirera à la fermeture du navigateur
+                req.session.cookie.expires = false;
+            }
 
                 // Affiche la session dans la console pour débogage
                 console.log("Session après login :", req.session);

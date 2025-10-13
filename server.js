@@ -1,16 +1,20 @@
+require('dotenv').config();
 const express = require("express");
 const session = require("express-session");
 const app = express();
 const port = 3000;
-
 const db = require('./models/db');
 
 // middlewares
 app.use(session({
-  secret: "###",
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // Mettre a true pour HTTPS
+    cookie: {
+    secure: false, // Mettre à true pour HTTPS
+    httpOnly: true,
+    maxAge: null
+  }
 }));
 
 app.use(express.json());
@@ -21,6 +25,12 @@ app.set("view engine", "ejs")
 
 // serve the public folder
 app.use(express.static('public'))
+
+// Middleware pour ajouter les données de la session à chaque vue
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(__dirname + '/public/favicon.ico');
