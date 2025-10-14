@@ -8,11 +8,12 @@ const controller = require("../controllers/AdminController");
 router.get("/", isAuthenticated, isAdmin, controller.get);
 router.get("/companies", isAuthenticated, isAdmin, controller.getCompanies);
 router.get("/users", isAuthenticated, isAdmin, controller.getUsers);
+router.get("/user/:id", isAuthenticated, isAdmin, controller.getUserInfo);
 router.get(
-    "/advertisements",
-    isAuthenticated,
-    isAdmin,
-    controller.getAdvertisements
+  "/advertisements",
+  isAuthenticated,
+  isAdmin,
+  controller.getAdvertisements
 );
 router.get("/keywords", isAuthenticated, isAdmin, controller.getKeywords);
 
