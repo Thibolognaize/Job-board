@@ -26,23 +26,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// middlewares
-// Fonction pour vérifier que le user est identifié
-function isAuthenticated(req, res, next) {
-    if (req.session.user) {
-        return next();
-    }
-    res.redirect("/user/login"); // Redirige vers login
-}
-
-function isAdmin(req, res, next) {
-    if (req.session.user && req.session.user.role === "admin") {
-        return next();
-    } else {
-        res.redirect("/");
-    }
-}
-
 // view engine is ejs
 app.set("view engine", "ejs");
 
