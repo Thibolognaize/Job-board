@@ -1,13 +1,38 @@
 const db = require("../models/db");
 
 module.exports = {
+    // Tous les accès à nos pages
     get: (req, res) => {
         res.render("admin/index");
     },
-    // Faire un premer crud pour les users
-    getUsers: (req, res) => {
-        res.render("admin/users");
+    // Actions pour USERS
+    getUsers: async (req, res) => {
+        try {
+            const users = await db.query(`
+            SELECT
+                u.id,
+                u.first_name,
+                u.last_name,
+                u.email,
+                u.tel,
+                u.got_license,
+                u.profile_desc,
+                u.address,
+                u.profile_picture_path,
+                u.cv_path,
+                u.created_at
+            FROM users u
+            LEFT JOIN companies c ON c.user_id = u.id
+            ORDER BY u.created_at;
+        `);
+            console.log("Résultat de la requête :", users);
+            res.render("admin/users", { users: users });
+        } catch (err) {
+            console.error("Error: ", err);
+            res.status(500).send("Erreur serveur");
+        }
     },
+
     getCompanies: (req, res) => {
         res.render("admin/companies");
     },
