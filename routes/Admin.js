@@ -6,15 +6,15 @@ const controller = require("../controllers/AdminController");
 
 // Index de l'espace admin
 router.get("/", isAuthenticated, isAdmin, controller.get);
-router.get("/companies", isAuthenticated, isAdmin, controller.getCompanies);
-router.get("/users", isAuthenticated, isAdmin, controller.getUsers);
-router.get("/user/:id", isAuthenticated, isAdmin, controller.getUserInfo);
+router.get("/companies", controller.getCompanies);
+router.get("/users", controller.getUsers);
+router.get("/user/:userId", controller.getUserInfo);
 router.get(
   "/advertisements",
   isAuthenticated,
   isAdmin,
   controller.getAdvertisements
 );
-router.get("/keywords", isAuthenticated, isAdmin, controller.getKeywords);
+router.get("/keywords", controller.getKeywords);
 
 module.exports = router;

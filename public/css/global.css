@@ -62,7 +62,9 @@ main {
     padding: 2rem;
     border-radius: 15px;
 }
-
+.bg-yellow{
+    background-color: #f4b324;
+}
 /* Admin styles */
 #admin-section {
     background-color: #f4b324;

@@ -33,9 +33,9 @@ module.exports = {
     }
   },
   getUserInfo: async (req, res) => {
-    const userId = req.params.userId;
     try {
-      // Utiliser des requêtes paramétrées pour éviter les injections SQL
+      const userId = req.params.userId;
+      console.log(userId);
       const user = await db.query(
         `
         SELECT
@@ -52,13 +52,12 @@ module.exports = {
             u.created_at
         FROM users u
         LEFT JOIN companies c ON c.user_id = u.id
-        WHERE u.id = ?
-        ORDER BY u.created_at;
+        WHERE u.id = $1
       `,
         [userId]
       ); // Passer userId comme paramètre
       console.log("Résultat de la requête :", user);
-      res.render("admin/userInfo", { user: user });
+      res.render("admin/userInfo", { user: user[0] });
     } catch (err) {
       console.error("Error: ", err);
       res.status(500).send("Erreur serveur");
