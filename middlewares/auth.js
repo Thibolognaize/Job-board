@@ -31,10 +31,22 @@ function authenticateToken(req,res,next){
             return res.sendStatus(403) //403 renvoi qu'il a le mauvais token
         }
 
-        req.user = user
+        req.user = user;
         next()
     }); //on verifie la token avec la code qu'on l'a hashé avec
 
+}
+
+function refreshToken(req, res) {
+    const { refreshToken } = req.cookies;
+    if (!refreshToken) return res.status(401).send("Refresh token manquant");
+
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+        if (err) return res.status(403).send("Refresh token invalide");
+        const newAccessToken = generateAccesToken({ id: user.id, email: user.email });
+        res.cookie('accessToken', newAccessToken, { httpOnly: true, maxAge: 10 * 60 * 1000 });
+        res.send({ success: true });
+    });
 }
 
 // Exportation des middlewares

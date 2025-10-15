@@ -35,7 +35,24 @@ module.exports = {
             };
             
             const accessToken = generateAccesToken(userData);
-            res.json({ accessToken: accessToken }); //
+            const refreshToken = generateRefreshToken(userData);
+
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true,       // Empêche l'accès via JavaScript (sécurité)
+                secure: true,         // Active en HTTPS seulement (désactive en développement si tu n'as pas de HTTPS)
+                maxAge: 10 * 60 * 1000, // 10 minutes (même durée que le token)
+                sameSite: 'strict'    // Protection cross-site request forgery
+            });
+
+            res.cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                maxAge: 7 * 24 * 60 * 60 * 1000 // 7 jours
+                });
+
+            res.redirect("/")
+
+
             
         } catch (error) {
             console.error("Erreur lors de la connexion :", error);
