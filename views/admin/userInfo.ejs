@@ -14,96 +14,112 @@
 <body>
     <section class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-8 d-flex">
+            <div class="col-md-8">
+
                 <div class="card">
                     <div class="card-header bg-yellow">
                         <h2 class="text-center">Informations Utilisateur</h2>
                     </div>
-                    <div class="card-body">
+                    <form class="form" id="userForm">
                         <div class="row mb-3">
-                            <div class="col-md-6 d-flex flex-column">
-                                <h5 class="card-title">ID</h5>
-                                <p class="card-text">
-                                    <%= user.id %>
-                                </p>
-                            </div>
                             <div class="col-md-6">
-                                <h5 class="card-title">Nom Complet</h5>
-                                <p class="card-text">
-                                    <%= user.first_name %>
-                                        <%= user.last_name %>
-                                </p>
+                                <label class="card-title" for="firstName">Prénom</label><br><input class="card-text"
+                                    type="text" name="firstName" id="first_name" value="<%= user.first_name  %>" />
+                                <br>
+                                <label for="lastName">Nom</label><br>
+                                <input type="text" name="lastName" id="last_name" value="<%= user.last_name %>" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <h5 class="card-title">Email</h5>
-                                <p class="card-text">
-                                    <%= user.email %>
-                                </p>
+                                <label for="email">Email</label><br>
+                                <input type="text" name="email" id="email" value="<%= user.email %>">
                             </div>
                             <div class="col-md-6">
-                                <h5 class="card-title">Téléphone</h5>
-                                <p class="card-text">
-                                    <%= user.tel %>
-                                </p>
+                                <label for="tel">Téléphone</label><br>
+                                <input type="text" name="tel" id="tel" value="<%= user.tel %>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <h5 class="card-title">Permis de conduire</h5>
-                                <p class="card-text">
-                                    <%= user.got_license %>
-                                </p>
+                                <label for="license">Permis de conduire</label><br>
+                                <select name="license" id="license">
+                                    <option value="">
+                                        <%= user.got_license ? "-- Oui --" : "-- undefined --" %>
+                                    </option>
+                                    <option value="true">OUI</option>
+                                    <option value="false">NON</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
-                                <h5 class="card-title">Adresse</h5>
-                                <p class="card-text">
-                                    <%= user.address %>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <h5 class="card-title">Description</h5>
-                                <p class="card-text">
-                                    <%= user.profile_desc %>
-                                </p>
+                                <label for="address">Adresse</label><br>
+                                <input type="text" name="address" id="address" value="<%= user.address %>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <h5 class="card-title">Chemin de la photo de profil</h5>
-                                <p class="card-text">
-                                    <%= user.profile_picture_path %>
-                                </p>
+                                <label for="profile_pic">Path photo de profil</label><br>
+                                <input type="text" name="profile_pic" id="profile_pic"
+                                    value="<%= user.profile_picture_path %>" />
                             </div>
                             <div class="col-md-6">
-                                <h5 class="card-title">Chemin du CV</h5>
-                                <p class="card-text">
-                                    <%= user.cv_path %>
-                                </p>
+                                <label for="cv">Path CV</label><br>
+                                <input type="text" name="cv" id="cv" value="<%= user.cv_path %>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <h5 class="card-title">Date de création</h5>
-                                <p class="card-text">
-                                    <%= user.created_at %>
-                                </p>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="desc">Description</label><br>
+                                    <textarea name="desc" id="desc" value="desc"><%= user.profile_desc %></textarea>
+                                </div>
                             </div>
+                            <h5 class="card-title">Date de création</h5>
+                            <p class="card-text">
+                                <%= user.created_at %>
+                            </p>
+
                         </div>
                         <div class="row d-flex justify-content-evenly">
                             <a href="/admin/users" class="btn btn-primary w-auto">Retour à la liste des utilisateurs</a>
                             <btn onclick="f()" class="btn btn-secondary w-auto">Modifier les infos</btn>
                         </div>
-                    </div>
+                    </form>
                 </div>
+
             </div>
         </div>
     </section>
     <!-- Lien vers Bootstrap JS (optionnel, si vous avez besoin de fonctionnalités JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const f = async () => {
+            const form = document.getElementById("userForm");
+            console.log(form);
+            // for (let i in form.elements) {
+            //     console.log(i + form.elements[i].value)
+            // }
+            const formData = {
+                "id": "<%= user.id %>",
+                "first_name": document.getElementById("first_name").value,
+                "last_name": document.getElementById("last_name").value,
+                "email": document.getElementById("email").value,
+                "tel": document.getElementById("tel").value,
+                "got_license": document.getElementById("license").value,
+                "profile_desc": document.getElementById("desc").value,
+                "address": document.getElementById("address").value,
+                "profile_picture_path": document.getElementById("profile_pic").value,
+                "cv_path": document.getElementById("cv").value
+            }
+            console.log(formData);
+            await fetch('/admin/user/:userId', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+        };
+    </script>
 </body>
 
 </html>

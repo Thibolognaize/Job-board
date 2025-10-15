@@ -8,8 +8,10 @@ const controller = require("../controllers/AdminController");
 router.get("/", isAuthenticated, isAdmin, controller.get);
 router.get("/companies", controller.getCompanies);
 router.get("/users", controller.getUsers);
+
 router.get("/user/:userId", controller.getUserInfo);
 router.post("/user/:userId", controller.postUserInfo);
+
 // router.delete("/user/:userId", controller.deleteUser);
 router.get(
   "/advertisements",

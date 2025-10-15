@@ -25,7 +25,6 @@ module.exports = {
             LEFT JOIN companies c ON c.user_id = u.id
             ORDER BY u.created_at;
         `);
-      console.log("Résultat de la requête :", users);
       res.render("admin/users", { users: users });
     } catch (err) {
       console.error("Error: ", err);
@@ -55,8 +54,8 @@ module.exports = {
       `,
         [userId]
       ); // Passer userId comme paramètre
-      console.log("Résultat de la requête :", user);
-      res.render("admin/userInfo_copy", { user: user[0] });
+      // console.log("Résultat de la requête :", user);
+      res.render("admin/userInfo", { user: user[0] });
     } catch (err) {
       console.error("Error: ", err);
       res.status(500).send("Erreur serveur");
@@ -64,11 +63,54 @@ module.exports = {
   },
   postUserInfo: async (req, res) => {
     try {
-      const infos = res.body;
-      console.log(infos);
+      const {
+        id,
+        first_name,
+        last_name,
+        email,
+        tel,
+        role,
+        is_admin,
+        got_license,
+        profile_desc,
+        cv_path,
+      } = req.body;
+
+      // Requête paramétrée pour éviter les injections SQL
+      const query = `
+      UPDATE users
+      SET
+        first_name = $1,
+        last_name = $2,
+        email = $3,
+        tel = $4,
+        role = $5,
+        is_admin = $6,
+        got_license = $7,
+        profile_desc = $8,
+        cv_path = $9
+      WHERE id = $10
+    `;
+
+      // Valeurs à passer (NULL si non fournies, sauf pour is_admin qui a une valeur par défaut)
+      const values = [
+        first_name || null,
+        last_name || null,
+        email || null,
+        tel || null,
+        role || "user", // Valeur par défaut si non fournie
+        is_admin || false, // Valeur par défaut si non fournie
+        got_license || null,
+        profile_desc || null,
+        cv_path || null,
+        id, // ID doit être fourni et valide
+      ];
+
+      await db.query(query, values);
+      res.status(200).send("Utilisateur mis à jour avec succès");
     } catch (err) {
-      console.error("Error: ", err);
-      res.status(500).send("Erreur server");
+      console.error(`Erreur serveur: ${err.message}`);
+      res.status(500).send("Erreur serveur lors de la mise à jour");
     }
   },
 
