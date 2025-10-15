@@ -47,17 +47,21 @@ module.exports = {
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 7 * 24 * 60 * 60 * 1000 // 7 jours
+                maxAge: 7 * 24 * 60 * 60 * 1000 ,
+                sameSite: 'strict'
                 });
 
             res.redirect("/")
-
-
             
         } catch (error) {
             console.error("Erreur lors de la connexion :", error);
             res.status(500).send("Erreur serveur");
         }
     },
+
+    logout: (req, res) => {
+        res.clearCookie('accessToken');
+        res.redirect('/');
+    }
 
 };
