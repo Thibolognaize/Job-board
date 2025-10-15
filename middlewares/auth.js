@@ -23,7 +23,7 @@ function authenticateToken(req,res,next){
     const token = authHeader && authHeader.split(' ')[1]
 
     if (!token){
-        return res.sendStatus(401)
+        return res.sendStatus(401) // user doesn’t have permission to access a target resource
     }
 
     jwt.verify(token, process.env.ACCES_TOKEN_SECRET, (err,user)=>{
@@ -40,5 +40,6 @@ function authenticateToken(req,res,next){
 // Exportation des middlewares
 module.exports = {
     isAuthenticated,
-    isAdmin
+    isAdmin,
+    authenticateToken
 };

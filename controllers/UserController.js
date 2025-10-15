@@ -65,6 +65,7 @@ module.exports = {
 
                 // Redirige vers la page d'accueil après un login réussi
                 return res.redirect("/");
+                
             } else {
                 return res.redirect("/user/login?error=Email ou mot de passe incorrect");
             }
