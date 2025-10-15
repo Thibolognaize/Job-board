@@ -32,8 +32,23 @@ module.exports = {
         res.render("users/register", { error: req.query.error });
     },
 
-    renderProfil: (req, res) => {
-        res.render("users/profil", { error: req.query.error });
+    renderProfil: async (req, res) => {
+        try {
+        const id = req.user.id;
+        const user = await db.oneOrNone("SELECT * FROM users WHERE id = $1", [id]);
+        console.log(user)
+
+        res.send(user)
+        /* res.render("users/profile", { 
+                user: user,
+                success: req.query.success,
+                error: req.query.error
+            }); */
+            
+        } catch (error) {
+            console.error("Erreur lors de la récupération du profil :", error);
+            res.status(500).send("Erreur serveur");
+        }
     },
 
     login: async (req, res) => {
@@ -75,7 +90,7 @@ module.exports = {
                 sameSite: 'strict'
                 });
 
-            res.redirect("/")
+            res.redirect("/profil")
             
         } 
         catch (error) {
