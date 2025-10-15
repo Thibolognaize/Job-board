@@ -31,7 +31,7 @@ function authenticateToken(req,res,next){
             return res.sendStatus(403) //403 renvoi qu'il a le mauvais token
         }
 
-        req.user = user;
+        req.user = user; 
         next()
     }); //on verifie la token avec la code qu'on l'a hashé avec
 
