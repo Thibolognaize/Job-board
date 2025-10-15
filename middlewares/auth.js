@@ -16,6 +16,26 @@ function isAdmin(req, res, next) {
     res.status(403).send('Accès refusé');
 }
 
+function authenticateToken(req,res,next){
+    const authHeader = req.headers["authorization"] //Authorization: Bearer <token> --> format de Bearer Authentication
+    //si authheader == null ou undefined alors token devient ça
+    //si autheader est un string valable alors on accede à la partie token 
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (!token){
+        return res.sendStatus(401)
+    }
+
+    jwt.verify(token, process.env.ACCES_TOKEN_SECRET, (err,user)=>{
+        if (err){
+            return res.sendStatus(403) //403 renvoi qu'il a le mauvais token
+        }
+
+        req.user = user
+        next()
+    }); //on verifie la token avec la code qu'on l'a hashé avec
+
+}
 
 // Exportation des middlewares
 module.exports = {

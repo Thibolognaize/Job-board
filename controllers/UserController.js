@@ -2,6 +2,8 @@ const db = require("../models/db");
 const { errors } = require("pg-promise");
 const bcrypt = require("bcrypt");
 
+const jwt = require('jsonwebtoken')
+
 module.exports = {
     // getUsers: (req, res) => {
     //     db.any("SELECT * FROM users;")
@@ -104,5 +106,11 @@ module.exports = {
 
     update: async (req, res) => {
         res.send("text")
+    },
+
+    delete: async (req, res) => {
+        res.send("text")
     }
+
+
 };

@@ -1,0 +1,11 @@
+GET http://localhost:3000/user/login
+
+###
+
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email": "edg",
+    "password":"1235" 
+}
