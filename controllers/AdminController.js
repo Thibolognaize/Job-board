@@ -35,7 +35,6 @@ module.exports = {
   getUserInfo: async (req, res) => {
     try {
       const userId = req.params.userId;
-      console.log(userId);
       const user = await db.query(
         `
         SELECT
@@ -57,10 +56,19 @@ module.exports = {
         [userId]
       ); // Passer userId comme paramètre
       console.log("Résultat de la requête :", user);
-      res.render("admin/userInfo", { user: user[0] });
+      res.render("admin/userInfo_copy", { user: user[0] });
     } catch (err) {
       console.error("Error: ", err);
       res.status(500).send("Erreur serveur");
+    }
+  },
+  postUserInfo: async (req, res) => {
+    try {
+      const infos = res.body;
+      console.log(infos);
+    } catch (err) {
+      console.error("Error: ", err);
+      res.status(500).send("Erreur server");
     }
   },
 
