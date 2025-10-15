@@ -5,12 +5,12 @@ const app = express();
 const port = 3000;
 const db = require('./models/db');
 
-// middlewares
+// Donnée de sessions
 app.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
-    cookie: {
+  cookie: {
     secure: false, // Mettre à true pour HTTPS
     httpOnly: true,
     maxAge: null
@@ -18,13 +18,7 @@ app.use(session({
 }));
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); //necessaire pour la recup des données de formulaire
-
-// view engine is ejs
-app.set("view engine", "ejs")
-
-// serve the public folder
-app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true })); // nécessaire pour la récup des données de formulaire
 
 // Middleware pour ajouter les données de la session à chaque vue
 app.use((req, res, next) => {
@@ -32,25 +26,32 @@ app.use((req, res, next) => {
   next();
 });
 
+// view engine is ejs
+app.set("view engine", "ejs");
+
+// serve the public folder
+app.use(express.static('public'));
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(__dirname + '/public/favicon.ico');
 });
 
-// Routes 
+// Routes
 app.get("/", (req, res) => {
-    res.render("index")
-})
+    res.render("index");
+});
+
 
 // Tous nos routers
 const userRouter = require("./routes/User");
 const advertisementRouter = require("./routes/Advertisement");
-
+const adminRouter = require("./routes/Admin")
 // Nos routes utilisées
 app.use("/user", userRouter);
 app.use("/advertisements", advertisementRouter);
+app.use("/admin", adminRouter)
 
 // port listening is 3000
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`)
-    db ? console.log(`Database is connected`) : console.log(`Database is not found`)
+    console.log(`Server running on http://localhost:${port}`);
+    db ? console.log(`Database is connected`) : console.log(`Database is not found`);
 });

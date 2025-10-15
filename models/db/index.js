@@ -1,6 +1,11 @@
-const pgp = require('pg-promise')();
-const conn = "postgresql://admin:prrrout@localhost:5432/jobboard_db";
+const initOptions = {
+    // initialization options;
+};
 
-const db = pgp(conn);
+require('dotenv').config();
+
+const pgp = require('pg-promise')(initOptions);
+
+const db = pgp(process.env.DATABASE_URL);
 
 module.exports = db;

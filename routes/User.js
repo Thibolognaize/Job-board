@@ -3,7 +3,8 @@ const router = express.Router();
 
 const controller = require("../controllers/UserController")
 
-router.get("/", controller.getUsers);
+// TODO: Mettre en protection la route getUsers
+// router.get("/", controller.getUsers);
 
 router.get("/login", controller.renderLogin)
 router.post("/login", controller.login);

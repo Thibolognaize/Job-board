@@ -6,7 +6,7 @@ module.exports = {
     createAdvertisement: (req, res) => {
         res.render("advertisements/create");
     },
-    
+
     getAll: (req, res) => {
         const page = parseInt(req.query.page) || 1;
         const limit = 5;
@@ -17,7 +17,8 @@ module.exports = {
             .then((count) => {
                 const totalAdvertisements = parseInt(count.count);
                 totalPages = Math.ceil(totalAdvertisements / limit);
-                return db.any(`
+                return db.any(
+                    `
                     SELECT
                         a.*,
                         c.name AS company_name,
@@ -29,13 +30,15 @@ module.exports = {
                     LEFT JOIN companies c ON a.companies_id = c.id
                     ORDER BY a.id
                     LIMIT $1 OFFSET $2
-                `, [limit, offset]);
+                `,
+                    [limit, offset]
+                );
             })
             .then((advertisements) => {
                 res.render("advertisements/list", {
                     advertisements,
                     currentPage: page,
-                    totalPages: totalPages
+                    totalPages: totalPages,
                 });
             })
             .catch((error) => {
@@ -44,9 +47,7 @@ module.exports = {
             });
     },
 
-
-
-    // Récupération du Json d'un seul pour l'affichage des données 
+    // Récupération du Json d'un seul pour l'affichage des données
     getAdvertisementJson: (req, res) => {
         const id = req.params.id;
         const query = `
@@ -66,7 +67,10 @@ module.exports = {
                 res.json(advertisement);
             })
             .catch((error) => {
-                console.error("Erreur lors de la récupération de l'annonce :", error);
+                console.error(
+                    "Erreur lors de la récupération de l'annonce :",
+                    error
+                );
                 res.status(500).json({ error: "Erreur serveur" });
             });
     },
@@ -74,14 +78,17 @@ module.exports = {
     // Submission du formulaire de creation d'advertisement
     post: (req, res) => {
         const { title, description } = req.body;
-        db.none("INSERT INTO advertisements(name, description) VALUES($1, $2)", [title, description])
+        db.none(
+            "INSERT INTO advertisements(title, description) VALUES($1, $2)",
+            [title, description]
+        )
             .then(() => {
                 // Envoie une réponse avec un message de succès
                 res.render("advertisements/create", {
                     title: "",
                     success: true,
                     message: "Annonce créée avec succès !",
-                    link: "/advertisements" // Lien pour retourner à la liste
+                    link: "/advertisements", // Lien pour retourner à la liste
                 });
             })
             .catch((error) => {
@@ -91,9 +98,8 @@ module.exports = {
                     title: title,
                     error: true,
                     message: "Erreur lors de la création de l'annonce.",
-                    link: "/advertisements"
+                    link: "/advertisements",
                 });
             });
-    }
-
+    },
 };

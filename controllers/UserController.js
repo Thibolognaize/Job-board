@@ -3,17 +3,17 @@ const { errors } = require("pg-promise");
 const bcrypt = require("bcrypt");
 
 module.exports = {
-    getUsers: (req, res) => {
-        db.any("SELECT * FROM users;")
-            .then(rows => {
-                console.log(rows);
-                res.json(rows);
-            })
-            .catch(error => {
-                console.log(error);
-                res.status(500).send("Erreur serveur");
-            });
-    },
+    // getUsers: (req, res) => {
+    //     db.any("SELECT * FROM users;")
+    //         .then(rows => {
+    //             console.log(rows);
+    //             res.json(rows);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //             res.status(500).send("Erreur serveur");
+    //         });
+    // },
 
     renderLogin: (req, res) => {
         res.render("users/login", { error: req.query.error });
@@ -46,7 +46,7 @@ module.exports = {
                 req.session.user = {
                     id: user.id,
                     email: user.email,
-                    role : user.role,
+                    role : user.role || 'user',
                     isAdmin: user.is_admin || false
                 };
 

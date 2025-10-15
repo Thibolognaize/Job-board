@@ -114,7 +114,6 @@ INSERT INTO
         contact,
         address,
         city,
-        num_siret,
         user_id
     )
 VALUES (
@@ -123,7 +122,6 @@ VALUES (
         'contact@techcorp.example.com',
         '123 Rue de Paris',
         'Paris',
-        '12345678901234',
         1
     ),
     (
@@ -132,7 +130,6 @@ VALUES (
         'contact@websolutions.example.com',
         '456 Rue de Lyon',
         'Lyon',
-        '98765432109876',
         2
     ),
     (
@@ -141,14 +138,13 @@ VALUES (
         'contact@datasystems.example.com',
         '789 Rue de Marseille',
         'Marseille',
-        '45678912304567',
         3
     );
 
 -- Insertion des données dans la table advertisements
 INSERT INTO
     advertisements (
-        title,
+        name,
         description,
         views,
         img_path,
