@@ -74,6 +74,8 @@ module.exports = {
         got_license,
         profile_desc,
         cv_path,
+        address,
+        profile_picture_path,
       } = req.body;
 
       // Requête paramétrée pour éviter les injections SQL
@@ -88,8 +90,10 @@ module.exports = {
         is_admin = $6,
         got_license = $7,
         profile_desc = $8,
-        cv_path = $9
-      WHERE id = $10
+        cv_path = $9,
+        address = $10,
+        profile_picture_path = $11
+      WHERE id = $12
     `;
 
       // Valeurs à passer (NULL si non fournies, sauf pour is_admin qui a une valeur par défaut)
@@ -103,6 +107,8 @@ module.exports = {
         got_license || null,
         profile_desc || null,
         cv_path || null,
+        address || null,
+        profile_picture_path || null,
         id, // ID doit être fourni et valide
       ];
 

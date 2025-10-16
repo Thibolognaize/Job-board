@@ -82,11 +82,10 @@
                         </div>
                         <div class="row d-flex justify-content-evenly">
                             <a href="/admin/users" class="btn btn-primary w-auto">Retour à la liste des utilisateurs</a>
-                            <btn onclick="f()" class="btn btn-secondary w-auto">Modifier les infos</btn>
+                            <btn onclick="f()" class="btn btn-secondary w-auto">Sauvegarder les infos</btn>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </section>
@@ -94,10 +93,6 @@
     <script>
         const f = async () => {
             const form = document.getElementById("userForm");
-            console.log(form);
-            // for (let i in form.elements) {
-            //     console.log(i + form.elements[i].value)
-            // }
             const formData = {
                 "id": "<%= user.id %>",
                 "first_name": document.getElementById("first_name").value,
@@ -110,7 +105,6 @@
                 "profile_picture_path": document.getElementById("profile_pic").value,
                 "cv_path": document.getElementById("cv").value
             }
-            console.log(formData);
             await fetch('/admin/user/:userId', {
                 method: 'POST',
                 headers: {
