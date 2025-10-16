@@ -22,26 +22,28 @@
                     </div>
                     <form class="form" id="userForm">
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label class="card-title" for="firstName">Prénom</label><br><input class="card-text"
                                     type="text" name="firstName" id="first_name" value="<%= user.first_name  %>" />
                                 <br>
+                            </div>
+                            <div class="col-md-6 text-center">
                                 <label for="lastName">Nom</label><br>
                                 <input type="text" name="lastName" id="last_name" value="<%= user.last_name %>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label for="email">Email</label><br>
                                 <input type="text" name="email" id="email" value="<%= user.email %>">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label for="tel">Téléphone</label><br>
                                 <input type="text" name="tel" id="tel" value="<%= user.tel %>">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label for="license">Permis de conduire</label><br>
                                 <select name="license" id="license">
                                     <option value="">
@@ -51,38 +53,40 @@
                                     <option value="false">NON</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label for="address">Adresse</label><br>
                                 <input type="text" name="address" id="address" value="<%= user.address %>">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label for="profile_pic">Path photo de profil</label><br>
                                 <input type="text" name="profile_pic" id="profile_pic"
                                     value="<%= user.profile_picture_path %>" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <label for="cv">Path CV</label><br>
                                 <input type="text" name="cv" id="cv" value="<%= user.cv_path %>" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="row mb-3">
-                                <div class="col-md-12">
+                                <div class="col-md-12 text-center">
                                     <label for="desc">Description</label><br>
-                                    <textarea name="desc" id="desc" value="desc"><%= user.profile_desc %></textarea>
+                                    <textarea cols="65" rows="3" name="desc" id="desc"
+                                        value="desc"><%= user.profile_desc %></textarea>
                                 </div>
                             </div>
-                            <h5 class="card-title">Date de création</h5>
-                            <p class="card-text">
+                            <h5 class="card-title text-center">Date de création</h5>
+                            <p class="card-text text-center">
                                 <%= user.created_at %>
                             </p>
 
                         </div>
                         <div class="row d-flex justify-content-evenly">
-                            <a href="/admin/users" class="btn btn-primary w-auto">Retour à la liste des utilisateurs</a>
-                            <btn onclick="f()" class="btn btn-secondary w-auto">Sauvegarder les infos</btn>
+                            <a href="/admin/users" class="btn btn-primary w-auto m-2">Retour à la liste des
+                                utilisateurs</a>
+                            <button onclick="f()" class="btn btn-secondary w-auto m-2">Sauvegarder les infos</button>
                         </div>
                     </form>
                 </div>
@@ -105,7 +109,7 @@
                 "profile_picture_path": document.getElementById("profile_pic").value,
                 "cv_path": document.getElementById("cv").value
             }
-            await fetch('/admin/user/:userId', {
+            await fetch('/admin/user/<%=user.id%>', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
