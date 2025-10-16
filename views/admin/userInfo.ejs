@@ -86,8 +86,19 @@
                         <div class="row d-flex justify-content-evenly">
                             <a href="/admin/users" class="btn btn-primary w-auto m-2">Retour à la liste des
                                 utilisateurs</a>
-                            <button onclick="f(event)" class="btn btn-secondary w-auto m-2">Sauvegarder les
+                            <button onclick="save(event)" class="btn btn-secondary w-auto m-2">Sauvegarder les
                                 infos</button>
+                            <button onclick="" type="button" class="btn btn-outline-danger w-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                    </path>
+                                </svg>
+                                Supprimer
+                            </button>
+                        </div>
+                        <div class="row mb-3">
                         </div>
                     </form>
                 </div>
@@ -97,7 +108,7 @@
     </section>
     <!-- Lien vers Bootstrap JS (optionnel, si vous avez besoin de fonctionnalités JS) -->
     <script>
-        const f = async (event) => {
+        const save = async (event) => {
             event.preventDefault();
             const form = document.getElementById("userForm");
             const formData = {
