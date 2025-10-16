@@ -119,6 +119,21 @@ module.exports = {
       res.status(500).send("Erreur serveur lors de la mise à jour");
     }
   },
+  deleteUser: async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      // Requête pour supprimer l'utilisateur de la base de données
+      const query = "DELETE FROM users WHERE id = $1";
+      const values = [userId];
+      await db.query(query, values);
+      res.status(200).send("Utilisateur supprimé avec succès");
+    } catch (err) {
+      console.error("Erreur serveur: ", err);
+      res
+        .status(500)
+        .send("Erreur serveur lors de la suppression de l'utilisateur");
+    }
+  },
 
   getCompanies: (req, res) => {
     res.render("admin/companies");
