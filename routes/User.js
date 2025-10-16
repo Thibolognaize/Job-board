@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controllers/UserController")
+const controller = require("../controllers/UserController");
+const middleware = require("../../../../../Bureau/WEB/Job-board/middlewares/auth"); // diff syntaxe par rapport à admin.js
 
 // TODO: Mettre en protection la route getUsers
 // router.get("/", controller.getUsers);

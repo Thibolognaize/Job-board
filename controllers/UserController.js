@@ -4,12 +4,13 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 
 function generateAccesToken(user){
-    return jwt.sign(user, process.env.ACCES_TOKEN_SECRET, {expiresIn: "10m" })
+    return jwt.sign(user, process.env.ACCES_TOKEN_SECRET,)
 }
 
-function generateRefreshToken(user){
+/* function generateRefreshToken(user){
     return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "7d" })
 }
+ */
 
 module.exports = {
     // getUsers: (req, res) => {
@@ -39,11 +40,11 @@ module.exports = {
         console.log(user)
 
         res.send(user)
-        /* res.render("users/profile", { 
+        res.render("/profil", { 
                 user: user,
                 success: req.query.success,
                 error: req.query.error
-            }); */
+            });
             
         } catch (error) {
             console.error("Erreur lors de la récupération du profil :", error);
@@ -69,27 +70,28 @@ module.exports = {
             const userData = {
                 id: user.id,
                 email: user.email,
+                name : user.fname + " " + user.lname,
                 role: user.role,
                 isAdmin: user.is_admin
             };
             
             const accessToken = generateAccesToken(userData);
             const refreshToken = generateRefreshToken(userData);
-
+            
+            //Création du Token pour acceder au Profil
             res.cookie('accessToken', accessToken, {
                 httpOnly: true,       // Empêche l'accès via JavaScript (sécurité)
                 secure: true,         // Active en HTTPS seulement (désactive en développement si tu n'as pas de HTTPS)
-                maxAge: 10 * 60 * 1000, // 10 minutes (même durée que le token)
                 sameSite: 'strict'    // Protection cross-site request forgery
             });
 
-            res.cookie("refreshToken", refreshToken, {
+/*             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
                 maxAge: 7 * 24 * 60 * 60 * 1000 ,
                 sameSite: 'strict'
                 });
-
+ */
             res.redirect("/profil")
             
         } 

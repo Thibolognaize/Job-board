@@ -36,7 +36,7 @@
                 <button class="btn border-black mt-3 rounded-5 text-white fw-semibold"
                     style="background-color: #1c191a;">Rechercher</button>
                 <% if (user) { %>
-                    <p>Bienvenue, <%= user.email %>!</p>
+                    <p>Bienvenue, <%= user.name %>!</p>
                     <% if (user.isAdmin) { %>
                         <p>Vous êtes un administrateur.</p>
                         <p>Rôle: <%= user.role %>

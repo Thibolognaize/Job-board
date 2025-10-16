@@ -1,28 +1,17 @@
 require('dotenv').config();
 const express = require("express");
-const session = require("express-session");
 const app = express();
 const port = 3000;
 const db = require('./models/db');
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
-// Donnée de sessions
-app.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false, // Mettre à true pour HTTPS
-    httpOnly: true,
-    maxAge: null
-  }
-}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // nécessaire pour la récup des données de formulaire
 
-// Middleware pour ajouter les données de la session à chaque vue
 app.use((req, res, next) => {
-  res.locals.user = req.session.user;
+  res.locals.user = req.user;
   next();
 });
 
