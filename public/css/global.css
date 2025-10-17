@@ -86,3 +86,23 @@ main {
 .admin-card .btn-primary:hover {
     background-color: #02160086;
 }
+
+/*Profil*/
+
+#row{
+    height: 100vh;
+}
+
+.profile-info{
+    background-color: #f4b324;
+    height: 100vh;
+}
+
+.profile-info a{
+    color: #1c191a;
+}
+
+.profile-info img{
+    width: 112px;
+    height: 112px;
+}

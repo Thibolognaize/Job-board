@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+    <%- include("../partials/header") %>
+
+    <div class="container-fluid" >
+        <div class="row" id="row">            
+            <div class="p-3 col profile-info" style="font-size: large;">
+                <img src="/assets/images/default-avatar.webp" class="img-thumbnail rounded-circle m-3"><br>
+                
+                <a href="#1" class="link-underline link-underline-opacity-0 p-4">Parametres Utilisateur</a><br>
+                <a href="#2" class="link-underline link-underline-opacity-0 p-4">Documents</a><br>
+                <a href="#3" class="link-underline link-underline-opacity-0 p-4">Annonces Postulés</a>
+            </div>
+            <div class="p-5 col-10">
+                <h2 id="1">Parametres Utilisateur</h2>
+                <form action="/users/profile"></form>
+
+            </div>
+        </div>
+        
+
+    <%- include("../partials/footer") %>
+    <script src="/js/bootstrap.bundle.min.js"></script></body>
+</html>
