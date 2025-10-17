@@ -8,7 +8,7 @@ module.exports = {
     //         .then(rows => {
     //             console.log(rows);
     //             res.json(rows);
-    //         })
+    //         
     //         .catch(error => {
     //             console.log(error);
     //             res.status(500).send("Erreur serveur");
@@ -21,6 +21,10 @@ module.exports = {
 
     renderRegister: (req, res) => {
         res.render("users/register", { error: req.query.error });
+    },
+
+    renderProfil: (req, res) => {
+        res.render("users/profil", { error: req.query.error });
     },
 
     login: async (req, res) => {
