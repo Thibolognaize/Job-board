@@ -24,8 +24,50 @@
             </div>
             <div class="p-5 col-10">
                 <h2 id="1">Parametres Utilisateur</h2>
-                <form action="/users/profile"></form>
+                <div class="container m-3">
+                    <form action="/users/profile">
+                        <div class="row">
+                            <div class="mb-3 col">
+                                <label for="fname" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="fname" placeholder="getname">
+                            </div>
+                            <div class="mb-3 col">
+                                <label for="lname" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="lname" placeholder="getname">
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="mb-3 col">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label for="tel" class="form-label">Numéro de Téléphone</label>
+                                <input type="tel" class="form-control" id="tel" placeholder="XX XX XX XX XX">
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label for="got_license" class="form-label">Permis de Voiture</label> <br>
+                                <input type="checkbox" id="oui"> Oui <br>
+                                <input type="checkbox" id="non"> Non                                
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="profile_desc" class="form-label">Infos</label>
+                            <textarea class="form-control" id="profile_desc" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <h2 id="2" class="mt-5">Documents</h2>
+                <div class="container m-3">
+                    <div class="row">
+                        <input type="" name="" id="">
+
+                    </div>
+                </div>
             </div>
         </div>
         
