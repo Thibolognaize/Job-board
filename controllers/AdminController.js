@@ -135,10 +135,24 @@ module.exports = {
     }
   },
 
-  getCompanies: (req, res) => {
-    res.render("admin/companies");
+  getCompanies: async (req, res) => {
+    const companies = await db.query(`
+        SELECT 
+          c.*,
+          u.id AS user_id,
+          u.email AS user_email
+        FROM companies c
+        JOIN users u ON c.user_id = u.id ;`);
+    console.log(companies);
+    res.render("admin/companies", { companies: companies });
   },
-  getAdvertisements: (req, res) => {
-    res.render("admin/advertisements");
+  getAdvertisements: async (req, res) => {
+    const advertisements = await db.query(`
+      SELECT 
+        a.*,
+        c.name AS company_name
+      FROM advertisements a
+      JOIN companies c ON a.companies_id =  c.id;`);
+    res.render("admin/advertisements", { advertisements: advertisements });
   },
 };
