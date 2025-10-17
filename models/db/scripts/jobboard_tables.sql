@@ -1,9 +1,3 @@
-CREATE TABLE IF NOT EXISTS key_words (
-    id SERIAL PRIMARY KEY,
-    word VARCHAR(255),
-    category VARCHAR(255)
-);
-
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -43,14 +37,6 @@ CREATE TABLE IF NOT EXISTS advertisements (
     last_update TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     companies_id INT,
     FOREIGN KEY (companies_id) REFERENCES companies (id)
-);
-
-CREATE TABLE IF NOT EXISTS advertisement_keywords (
-    advertisement_id INT,
-    keyword_id INT,
-    PRIMARY KEY (advertisement_id, keyword_id),
-    FOREIGN KEY (advertisement_id) REFERENCES advertisements (id),
-    FOREIGN KEY (keyword_id) REFERENCES key_words (id)
 );
 
 CREATE TABLE IF NOT EXISTS history (

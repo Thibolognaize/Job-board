@@ -141,37 +141,4 @@ module.exports = {
   getAdvertisements: (req, res) => {
     res.render("admin/advertisements");
   },
-  // Keywords CRUD
-  // READ
-  getKeywords: async (req, res) => {
-    try {
-      const keywords = await db.query("SELECT * FROM key_words");
-      console.log(keywords);
-      res.render("admin/keywords", { keywords: keywords });
-    } catch (err) {
-      console.error("Error: ", err);
-      res.status(500).send("Erreur serveur");
-    }
-  },
-
-  // CREATE
-  postKeyword: (req, res) => {
-    try {
-      // Data envoyées par le front
-      const data = req.body;
-      console.log(data);
-      // REQUETE préparé + db.query(query, values)
-      const query = `
-
-      ;`;
-      // RES status + send
-    } catch (error) {
-      console.error(`Erreur serveur: ${err.message}`);
-      res.status(500).send("Erreur serveur lors de la mise à jour");
-    }
-  },
-  // UPDATE
-  updateKeyword: (req, res) => {},
-  // DELETE
-  removeKeyword: (req, res) => {},
 };

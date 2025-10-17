@@ -19,6 +19,5 @@ router.get(
   isAdmin,
   controller.getAdvertisements
 );
-router.get("/keywords", controller.getKeywords);
 
 module.exports = router;
