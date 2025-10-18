@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 
 function generateAccesToken(user){
-    return jwt.sign(user, process.env.ACCES_TOKEN_SECRET,)
+    return jwt.sign(user, process.env.ACCES_TOKEN_SECRET)
 }
 
 /* function generateRefreshToken(user){
@@ -35,11 +35,10 @@ module.exports = {
 
     renderProfil: async (req, res) => {
         try {
-        const id = req.user.id;
+        const id = user.id;
         const user = await db.oneOrNone("SELECT * FROM users WHERE id = $1", [id]);
         console.log(user)
 
-        res.send(user)
         res.render("/profil", { 
                 user: user,
                 success: req.query.success,
@@ -76,23 +75,17 @@ module.exports = {
             };
             
             const accessToken = generateAccesToken(userData);
-            const refreshToken = generateRefreshToken(userData);
+            //const refreshToken = generateRefreshToken(userData);
             
             //Création du Token pour acceder au Profil
             res.cookie('accessToken', accessToken, {
                 httpOnly: true,       // Empêche l'accès via JavaScript (sécurité)
-                secure: true,         // Active en HTTPS seulement (désactive en développement si tu n'as pas de HTTPS)
-                sameSite: 'strict'    // Protection cross-site request forgery
-            });
+                secure: process.env.NODE_ENV === "production",  // Active en HTTPS seulement (désactive en développement)
+                sameSite: 'strict',    // Protection cross-site request forgery
+                expires: new Date(Date.now() + 2 * 60 * 60 * 1000)
+            }); 
 
-/*             res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                maxAge: 7 * 24 * 60 * 60 * 1000 ,
-                sameSite: 'strict'
-                });
- */
-            res.redirect("/profil")
+            res.redirect("/")
             
         } 
         catch (error) {
@@ -126,6 +119,7 @@ module.exports = {
 
             // Redirige vers la page de login après une inscription réussie
             return res.redirect("/user/login");
+
         } catch (error) {
             console.error("Erreur lors de l'inscription :", error);
             res.status(500).send("Erreur serveur");

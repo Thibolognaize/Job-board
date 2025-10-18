@@ -1,7 +1,8 @@
 // middlewares/auth.js
 
 function isAuthenticated(req, res, next) {
-    if (req.user) {
+    if (req.cookies) {
+        console.log("req.cookies donne -->"+req.cookies);
         return next();
     }
     res.redirect("/user/login"); // Redirige vers login
@@ -9,10 +10,11 @@ function isAuthenticated(req, res, next) {
 
 
 function isAdmin(req, res, next) {
-    if (req.user && req.user.isAdmin === true) {
+    if (req.cookies && req.cookies.isAdmin === true) {
+        console.log("VERIF IS ADMIN REUSSI")
         return next();
     } 
-    console.log(req.user)
+    console.log(req.cookies)
     res.status(403).send('Accès refusé');
 }
 /* 
