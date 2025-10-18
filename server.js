@@ -5,6 +5,7 @@ const port = 3000;
 const db = require('./models/db');
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
+const { isAuthenticated } = require("./middlewares/auth");
 
 
 app.use(express.json());
@@ -25,7 +26,7 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 // Routes
-app.get("/", (req, res) => {
+app.get("/", isAuthenticated, (req, res) => {
     res.render("index");
 });
 

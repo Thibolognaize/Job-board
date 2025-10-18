@@ -1,8 +1,8 @@
 // middlewares/auth.js
 
 function isAuthenticated(req, res, next) {
-    if (req.cookies) {
-        console.log("req.cookies donne -->"+req.cookies);
+    const token = req.cookies.accessToken;
+    if (token) {
         return next();
     }
     res.redirect("/user/login"); // Redirige vers login
@@ -10,7 +10,8 @@ function isAuthenticated(req, res, next) {
 
 
 function isAdmin(req, res, next) {
-    if (req.cookies && req.cookies.isAdmin === true) {
+    const token = req.cookies.accessToken;
+    if (token && req.cookies.isAdmin === true) {
         console.log("VERIF IS ADMIN REUSSI")
         return next();
     } 
