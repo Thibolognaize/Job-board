@@ -45,6 +45,7 @@ module.exports = {
                 // Stocke les informations de l'utilisateur en session
                 req.session.user = {
                     id: user.id,
+                    name : user.first_name + " " + user.last_name,
                     email: user.email,
                     role : user.role || 'user',
                     isAdmin: user.is_admin || false
