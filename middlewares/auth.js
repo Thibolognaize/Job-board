@@ -1,8 +1,10 @@
 // middlewares/auth.js
+const jwt = require('jsonwebtoken')
 
 function isAuthenticated(req, res, next) {
     const token = req.cookies.accessToken;
     if (token) {
+        res.locals.user = jwt.verify(token, process.env.ACCES_TOKEN_SECRET);
         return next();
     }
     res.redirect("/user/login"); // Redirige vers login

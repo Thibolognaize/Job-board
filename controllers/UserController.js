@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 
 function generateAccesToken(user){
-    return jwt.sign(user, process.env.ACCES_TOKEN_SECRET)
+    return jwt.sign(user, process.env.ACCES_TOKEN_SECRET, {expiresIn: '10m'})
 }
 
 /* function generateRefreshToken(user){
@@ -69,7 +69,7 @@ module.exports = {
             const userData = {
                 id: user.id,
                 email: user.email,
-                name : user.fname + " " + user.lname,
+                name : user.first_name + " " + user.last_name,
                 role: user.role,
                 isAdmin: user.is_admin
             };
@@ -82,8 +82,7 @@ module.exports = {
                 httpOnly: true,       // Empêche l'accès via JavaScript (sécurité)
                 secure: process.env.NODE_ENV === "production",  // Active en HTTPS seulement (désactive en développement)
                 sameSite: 'strict',    // Protection cross-site request forgery
-                expires: new Date(Date.now() + 2 * 60 * 60 * 1000)
-            }); 
+            });
 
             res.redirect("/")
             
