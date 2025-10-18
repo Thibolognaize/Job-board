@@ -15,92 +15,113 @@
     <section class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
                 <div class="card">
                     <div class="card-header bg-yellow">
                         <h2 class="text-center">Informations Utilisateur</h2>
                     </div>
-                    <form class="form" id="userForm">
-                        <div class="row mb-3">
-                            <div class="col-md-6 text-center">
-                                <label class="card-title" for="firstName">Prénom</label><br><input class="card-text"
-                                    type="text" name="firstName" id="first_name" value="<%= user.first_name  %>" />
-                                <br>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <label for="lastName">Nom</label><br>
-                                <input type="text" name="lastName" id="last_name" value="<%= user.last_name %>" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 text-center">
-                                <label for="email">Email</label><br>
-                                <input type="text" name="email" id="email" value="<%= user.email %>">
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <label for="tel">Téléphone</label><br>
-                                <input type="text" name="tel" id="tel" value="<%= user.tel %>">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 text-center">
-                                <label for="license">Permis de conduire</label><br>
-                                <select name="license" id="license">
-                                    <option value="">
-                                        <%= user.got_license ? "-- Oui --" : "-- undefined --" %>
-                                    </option>
-                                    <option value="true">OUI</option>
-                                    <option value="false">NON</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <label for="address">Adresse</label><br>
-                                <input type="text" name="address" id="address" value="<%= user.address %>">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 text-center">
-                                <label for="profile_pic">Path photo de profil</label><br>
-                                <input type="text" name="profile_pic" id="profile_pic"
-                                    value="<%= user.profile_picture_path %>" />
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <label for="cv">Path CV</label><br>
-                                <input type="text" name="cv" id="cv" value="<%= user.cv_path %>" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="row mb-3">
-                                <div class="col-md-12 text-center">
-                                    <label for="desc">Description</label><br>
-                                    <textarea cols="65" rows="3" name="desc" id="desc"
-                                        value="desc"><%= user.profile_desc %></textarea>
+                    <div class="card-body">
+                        <form class="form" id="userForm">
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="firstName">Prénom</label>
+                                        <input type="text" class="form-control" name="firstName" id="first_name"
+                                            value="<%= user.first_name %>" />
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="lastName">Nom</label>
+                                        <input type="text" class="form-control" name="lastName" id="last_name"
+                                            value="<%= user.last_name %>" />
+                                    </div>
                                 </div>
                             </div>
-                            <h5 class="card-title text-center">Date de création</h5>
-                            <p class="card-text text-center">
-                                <%= user.created_at %>
-                            </p>
-
-                        </div>
-                        <div class="row d-flex justify-content-evenly">
-                            <a href="/admin/users" class="btn btn-primary w-auto m-2">Retour à la liste des
-                                utilisateurs</a>
-                            <button onclick="save(event)" class="btn btn-secondary w-auto m-2">Sauvegarder les
-                                infos</button>
-                            <button onclick="remove(event)" type="button" class="btn btn-outline-danger w-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
-                                    </path>
-                                </svg>
-                                Supprimer
-                            </button>
-                        </div>
-                        <div class="row mb-3">
-                        </div>
-                    </form>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" name="email" id="email"
+                                            value="<%= user.email %>" />
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="tel">Téléphone</label>
+                                        <input type="text" class="form-control" name="tel" id="tel"
+                                            value="<%= user.tel %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="license">Permis de conduire</label>
+                                        <select class="form-control" name="license" id="license">
+                                            <option value="">
+                                                <%= user.got_license ? "-- Oui --" : "-- undefined --" %>
+                                            </option>
+                                            <option value="true">OUI</option>
+                                            <option value="false">NON</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="address">Adresse</label>
+                                        <input type="text" class="form-control" name="address" id="address"
+                                            value="<%= user.address %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="profile_pic">Path photo de profil</label>
+                                        <input type="text" class="form-control" name="profile_pic" id="profile_pic"
+                                            value="<%= user.profile_picture_path %>" />
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="cv">Path CV</label>
+                                        <input type="text" class="form-control" name="cv" id="cv"
+                                            value="<%= user.cv_path %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="desc">Description</label>
+                                        <textarea class="form-control" rows="3" name="desc"
+                                            id="desc"><%= user.profile_desc %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Date de création</label>
+                                <p class="form-control-static">
+                                    <%= user.created_at %>
+                                </p>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <a href="/admin/users" class="btn btn-primary btn-custom">Retour à la liste des
+                                    utilisateurs</a>
+                                <button onclick="save(event)" class="btn btn-secondary btn-custom"
+                                    type="button">Sauvegarder les infos</button>
+                                <button onclick="remove(event)" class="btn btn-outline-danger btn-custom" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                        </path>
+                                    </svg>
+                                    Supprimer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="mt-3" id="alertContainer"></div>
             </div>
@@ -109,7 +130,6 @@
     <script>
         const save = async (event) => {
             event.preventDefault();
-            const form = document.getElementById("userForm");
             const formData = {
                 "id": "<%= user.id %>",
                 "first_name": document.getElementById("first_name").value,
@@ -130,11 +150,7 @@
                     },
                     body: JSON.stringify(formData)
                 });
-
-                const message = await response.text(); // Recupère le message de réponse depuis le server
-                console.log(message);
-
-                // Affiche une alerte en fonction du statut de la réponse
+                const message = await response.text();
                 const alertContainer = document.getElementById("alertContainer");
                 if (response.ok) {
                     alertContainer.innerHTML = `
@@ -158,9 +174,8 @@
                 `;
             }
         };
-
         const remove = async (event) => {
-            if (confirm("Êtes vous sur de supprimer un utilisateur ?")) {
+            if (confirm("Êtes vous sûr de supprimer un utilisateur ?")) {
                 try {
                     const response = await fetch('/admin/user/<%= user.id %>', {
                         method: 'DELETE',
@@ -169,7 +184,6 @@
                         },
                     });
                     if (response.ok) {
-                        // Rediriger ou mettre à jour l'interface utilisateur
                         const message = await response.text();
                         alert(message);
                         window.location.href = '/admin/users';
