@@ -1,90 +1,104 @@
 /* Réécriture temporaire des couleurs en css classique (a faire ensuite via variables bootstrap) */
 /* index style */
 header {
-    background-color: #1c191a;
+  background-color: #1c191a;
 }
 body {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .navbar-nav {
-    color: #f4b324;
+  color: #f4b324;
 }
 
-footer{
-    margin-top: auto;
+footer {
+  margin-top: auto;
 }
 
 main {
-    background-color: #f4b324;
+  background-color: #f4b324;
 }
 
 .nav-link {
-    color: #f4b324 !important;
-    font-size: 20px;
+  color: #f4b324 !important;
+  font-size: 20px;
 }
 
 .search-bar {
-    max-width: 500px;
-    margin: auto auto;
+  max-width: 500px;
+  margin: auto auto;
 }
 
 .search-bar .input-group {
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar .form-control {
-    border: none;
-    padding-left: 20px;
+  border: none;
+  padding-left: 20px;
 }
 
 .search-bar .btn {
-    border: none;
+  border: none;
 }
 
 .navbar-brand {
-    margin-right: 2rem !important;
+  margin-right: 2rem !important;
 }
 
 #search-section {
-    height: 500px;
+  height: 500px;
 }
 
 .img-card {
-    height: 225px;
+  height: 225px;
 }
 
 /* createAdvertisement */
 .form-container {
-    background-color: rgba(255, 255, 255, 0.25);
-    padding: 2rem;
-    border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 2rem;
+  border-radius: 15px;
 }
-.bg-yellow{
-    background-color: #f4b324;
+.bg-yellow {
+  background-color: #f4b324;
 }
 /* Admin styles */
 #admin-section {
-    background-color: #f4b324;
+  background-color: #f4b324;
 }
 
 .admin-card {
-    background-color: rgba(255, 255, 255, 0.25);
-    border-radius: 15px;
-    border: #1c191a;
-    margin-bottom: 20px;
-    height: 100%;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  border: #1c191a;
+  margin-bottom: 20px;
+  height: 100%;
 }
 
 .admin-card .card-body {
-    padding: 2rem;
+  padding: 2rem;
 }
 
-
 .admin-card .btn-primary:hover {
-    background-color: #02160086;
+  background-color: #02160086;
+}
+
+.keyword-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: rgb(213, 206, 206);
+}
+
+.keyword-item {
+  flex: 0 0 auto;
+  margin: 5px;
+  font-size: 20px;
 }
 
 /*Profil*/

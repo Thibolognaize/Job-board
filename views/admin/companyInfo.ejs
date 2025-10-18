@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - UserInfo</title>
+    <title>Admin - Company Infos</title>
     <!-- Lien vers Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/fonts.css">
@@ -15,73 +15,56 @@
     <section class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
+                c.id,
+                c.name,
+                c.website,
+                c.contact,
+                c.address,
+                c.city,
+                u.id as user_id,
+                u.email as user_email
                 <div class="card">
                     <div class="card-header bg-yellow">
-                        <h2 class="text-center">Informations Utilisateur</h2>
+                        <h2 class="text-center">Informations Entreprise</h2>
                     </div>
                     <form class="form" id="userForm">
                         <div class="row mb-3">
                             <div class="col-md-6 text-center">
-                                <label class="card-title" for="firstName">Prénom</label><br><input class="card-text"
-                                    type="text" name="firstName" id="first_name" value="<%= user.first_name  %>" />
+                                <label class="card-title" for="name">Name</label><br><input class="card-text"
+                                    type="text" name="name" id="name" value="<%= company.name  %>" />
                                 <br>
                             </div>
                             <div class="col-md-6 text-center">
-                                <label for="lastName">Nom</label><br>
-                                <input type="text" name="lastName" id="last_name" value="<%= user.last_name %>" />
+                                <label for="website">Website</label><br>
+                                <input type="text" name="website" id="website" value="<%= company.website %>" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6 text-center">
-                                <label for="email">Email</label><br>
-                                <input type="text" name="email" id="email" value="<%= user.email %>">
+                                <label for="contact">Contact</label><br>
+                                <input type="text" name="contact" id="contact" value="<%= company.contact %>">
                             </div>
                             <div class="col-md-6 text-center">
-                                <label for="tel">Téléphone</label><br>
-                                <input type="text" name="tel" id="tel" value="<%= user.tel %>">
+                                <label for="address">Addresse</label><br>
+                                <input type="text" name="address" id="address" value="<%= company.address %>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6 text-center">
-                                <label for="license">Permis de conduire</label><br>
-                                <select name="license" id="license">
-                                    <option value="">
-                                        <%= user.got_license ? "-- Oui --" : "-- undefined --" %>
-                                    </option>
-                                    <option value="true">OUI</option>
-                                    <option value="false">NON</option>
-                                </select>
+                                <label for="city">Ville</label><br>
+                                <input type="text" name="city" id="city" value="<% company.city %>">
                             </div>
                             <div class="col-md-6 text-center">
-                                <label for="address">Adresse</label><br>
-                                <input type="text" name="address" id="address" value="<%= user.address %>">
+                                <label for="id_user">Id Utilisateur</label><br>
+                                <input type="text" name="id_user" id="id_user" value="<%= company.id_user %>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6 text-center">
-                                <label for="profile_pic">Path photo de profil</label><br>
-                                <input type="text" name="profile_pic" id="profile_pic"
-                                    value="<%= user.profile_picture_path %>" />
+                                <label for="user_email">Email Utilisateur</label><br>
+                                <input type="text" name="user_email" id="user_email"
+                                    value="<%= company.user_email %>" />
                             </div>
-                            <div class="col-md-6 text-center">
-                                <label for="cv">Path CV</label><br>
-                                <input type="text" name="cv" id="cv" value="<%= user.cv_path %>" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="row mb-3">
-                                <div class="col-md-12 text-center">
-                                    <label for="desc">Description</label><br>
-                                    <textarea cols="65" rows="3" name="desc" id="desc"
-                                        value="desc"><%= user.profile_desc %></textarea>
-                                </div>
-                            </div>
-                            <h5 class="card-title text-center">Date de création</h5>
-                            <p class="card-text text-center">
-                                <%= user.created_at %>
-                            </p>
-
                         </div>
                         <div class="row d-flex justify-content-evenly">
                             <a href="/admin/users" class="btn btn-primary w-auto m-2">Retour à la liste des

@@ -25,7 +25,6 @@ module.exports = {
             LEFT JOIN companies c ON c.user_id = u.id
             ORDER BY u.created_at;
         `);
-      console.log("Résultat de la requête :", users);
       res.render("admin/users", { users: users });
     } catch (err) {
       console.error("Error: ", err);
@@ -35,7 +34,6 @@ module.exports = {
   getUserInfo: async (req, res) => {
     try {
       const userId = req.params.userId;
-      console.log(userId);
       const user = await db.query(
         `
         SELECT
@@ -56,21 +54,139 @@ module.exports = {
       `,
         [userId]
       ); // Passer userId comme paramètre
-      console.log("Résultat de la requête :", user);
+      // console.log("Résultat de la requête :", user);
       res.render("admin/userInfo", { user: user[0] });
     } catch (err) {
       console.error("Error: ", err);
       res.status(500).send("Erreur serveur");
     }
   },
+  postUserInfo: async (req, res) => {
+    try {
+      const {
+        id,
+        first_name,
+        last_name,
+        email,
+        tel,
+        role,
+        is_admin,
+        got_license,
+        profile_desc,
+        cv_path,
+        address,
+        profile_picture_path,
+      } = req.body;
 
-  getCompanies: (req, res) => {
-    res.render("admin/companies");
+      // Requête paramétrée pour éviter les injections SQL
+      const query = `
+      UPDATE users
+      SET
+        first_name = $1,
+        last_name = $2,
+        email = $3,
+        tel = $4,
+        role = $5,
+        is_admin = $6,
+        got_license = $7,
+        profile_desc = $8,
+        cv_path = $9,
+        address = $10,
+        profile_picture_path = $11
+      WHERE id = $12
+    `;
+
+      // Valeurs à passer (NULL si non fournies, sauf pour is_admin qui a une valeur par défaut)
+      const values = [
+        first_name || null,
+        last_name || null,
+        email || null,
+        tel || null,
+        role || "user", // Valeur par défaut si non fournie
+        is_admin || false, // Valeur par défaut si non fournie
+        got_license || null,
+        profile_desc || null,
+        cv_path || null,
+        address || null,
+        profile_picture_path || null,
+        id, // ID doit être fourni et valide
+      ];
+
+      await db.query(query, values);
+      res.status(200).send("Utilisateur mis à jour avec succès");
+    } catch (err) {
+      console.error(`Erreur serveur: ${err.message}`);
+      res.status(500).send("Erreur serveur lors de la mise à jour");
+    }
   },
-  getAdvertisements: (req, res) => {
-    res.render("admin/advertisements");
+  deleteUser: async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      // Requête pour supprimer l'utilisateur de la base de données
+      const query = "DELETE FROM users WHERE id = $1";
+      const values = [userId];
+      await db.query(query, values);
+      res.status(200).send("Utilisateur supprimé avec succès");
+    } catch (err) {
+      console.error("Erreur serveur: ", err);
+      res
+        .status(500)
+        .send("Erreur serveur lors de la suppression de l'utilisateur");
+    }
   },
-  getKeywords: (req, res) => {
-    res.render("admin/keywords");
+  // Actions pour companies
+  // READ (all)
+  getCompanies: async (req, res) => {
+    const companies = await db.query(`
+        SELECT 
+          c.*,
+          u.id AS user_id,
+          u.email AS user_email
+        FROM companies c
+        JOIN users u ON c.user_id = u.id ;`);
+    res.render("admin/companies", { companies: companies });
   },
+  // UPDATE
+  getCompanyInfo: async (req, res) => {
+    try {
+      const companyId = req.params.companyId;
+      const company = await db.query(
+        `
+        SELECT
+            c.id,
+            c.name,
+            c.website,
+            c.contact,
+            c.address,
+            c.city,
+            u.id as user_id,
+            u.email as user_email
+        FROM companies c
+        LEFT JOIN users u ON c.user_id = u.id
+        WHERE c.user_id = $1;
+      `,
+        [companyId]
+      ); // Passer userId comme paramètre
+      console.log("Résultat de la requête :", company);
+      res.render("admin/companyInfo", { company: company[0] });
+    } catch (err) {
+      console.error("Error: ", err);
+      res.status(500).send("Erreur serveur");
+    }
+  },
+  postCompanyInfo: () => {},
+  deleteCompany: () => {},
+  getAdvertisements: async (req, res) => {
+    const advertisements = await db.query(`
+      SELECT 
+        a.*,
+        c.name AS company_name
+      FROM advertisements a
+      JOIN companies c ON a.companies_id =  c.id;`);
+    res.render("admin/advertisements", { advertisements: advertisements });
+  },
+  //
+  // getAdvertisementInfo: () => {},
+  // postAdvertisementInfo: () => {},
+  // deleteAdvertisement: () => {},
 };
