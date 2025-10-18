@@ -23,8 +23,40 @@ module.exports = {
         res.render("users/register", { error: req.query.error });
     },
 
-    renderProfil: (req, res) => {
-        res.render("users/profil", { error: req.query.error });
+    renderProfil: async (req, res) => {
+        try {
+            if (!req.session.user) {
+                return res.redirect("/user/login?error=Veuillez vous connecter");
+            }
+            const userId = req.session.user.id;
+            const user = await db.query(
+                `
+                SELECT
+                    u.id,
+                    u.first_name,
+                    u.last_name,
+                    u.email,
+                    u.tel,
+                    u.got_license,
+                    u.profile_desc,
+                    u.address,
+                    u.profile_picture_path,
+                    u.cv_path,
+                    u.created_at
+                FROM users u
+                LEFT JOIN companies c ON c.user_id = u.id
+                WHERE u.id = $1
+            `,
+                [userId]
+            ); 
+            // Passer userId comme paramètre
+            // console.log("Résultat de la requête :", user);
+            res.render("users/profil", { user });
+            } 
+        catch (err) {
+        console.error("Error: ", err);
+        res.status(500).send("Erreur serveur");
+        }
     },
 
     login: async (req, res) => {
@@ -102,4 +134,5 @@ module.exports = {
             res.status(500).send("Erreur serveur");
         }
     }
+
 };
