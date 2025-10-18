@@ -29,34 +29,34 @@
             </thead>
             <% if (advertisements && advertisements.length> 0) { %>
                 <tbody>
-                    <% advertisements.forEach(advertisements=> { %>
-                        <tr>
+                    <% advertisements.forEach(advertisement=> { %>
+                        <tr class="clickable-row" data-href="/admin/advertisement/<%= advertisement.id %>">
                             <td>
-                                <%= advertisements.id %>
+                                <%= advertisement.id %>
                             </td>
                             <td>
-                                <%= advertisements.title %>
+                                <%= advertisement.title %>
                             </td>
                             <td>
-                                <%= advertisements.description %>
+                                <%= advertisement.description %>
                             </td>
                             <td>
-                                <%= advertisements.views %>
+                                <%= advertisement.views %>
                             </td>
                             <td>
-                                <%= advertisements.img_path %>
+                                <%= advertisement.img_path %>
                             </td>
                             <td>
-                                <%= advertisements.is_active %>
+                                <%= advertisement.is_active %>
                             </td>
                             <td>
-                                <%= advertisements.companies_id %>
+                                <%= advertisement.companies_id %>
                             </td>
                             <td>
-                                <%= advertisements.company_name %>
+                                <%= advertisement.company_name %>
                             </td>
                             <td>
-                                <%= advertisements.last_update %>
+                                <%= advertisement.last_update %>
                             </td>
                         </tr>
                         <% }) %>
@@ -70,6 +70,7 @@
                     <% } %>
         </table>
     </section>
+    <script src="/js/clickableRows.js"></script>
 </body>
 
 </html>

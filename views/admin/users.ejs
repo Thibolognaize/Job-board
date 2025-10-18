@@ -32,7 +32,7 @@
 			<% if (users && users.length> 0) { %>
 				<tbody>
 					<% users.forEach(user=> { %>
-						<tr>
+						<tr class="clickable-row" data-href="/admin/user/<%= user.id %>">
 							<td>
 								<%= user.id %>
 							</td>
@@ -43,9 +43,7 @@
 								<%= user.last_name %>
 							</td>
 							<td>
-								<a href="/admin/user/<%= user.id %>">
-									<%= user.email %>
-								</a>
+								<%= user.email %>
 							</td>
 							<td>
 								<%= user.tel %>
@@ -80,6 +78,7 @@
 					<% } %>
 		</table>
 	</section>
+	<script src="/js/clickableRows.js"></script>
 </body>
 
 </html>

@@ -29,38 +29,34 @@
             </thead>
             <% if (companies && companies.length> 0) { %>
                 <tbody>
-                    <% companies.forEach(companies=> { %>
-                        <tr>
+                    <% companies.forEach(company=> { %>
+                        <tr class="clickable-row" data-href="/admin/company/<%= company.id %>">
                             <td>
-                                <%= companies.id %>
+                                <%= company.id %>
                             </td>
                             <td>
-                                <a href="/admin/company/<%= companies.id %>">
-                                    <%= companies.name %>
-                                </a>
+                                <%= company.name %>
                             </td>
                             <td>
-                                <a href="<%= companies.website %>">
-                                    <%= companies.website %>
-                                </a>
+                                <%= company.website %>
                             </td>
                             <td>
-                                <%= companies.contact %>
+                                <%= company.contact %>
                             </td>
                             <td>
-                                <%= companies.address %>
+                                <%= company.address %>
                             </td>
                             <td>
-                                <%= companies.city %>
+                                <%= company.city %>
                             </td>
                             <td>
-                                <%= companies.num_siret %>
+                                <%= company.num_siret %>
                             </td>
                             <td>
-                                <%= companies.user_id %>
+                                <%= company.user_id %>
                             </td>
                             <td>
-                                <%= companies.user_email %>
+                                <%= company.user_email %>
                             </td>
                         </tr>
                         <% }) %>
@@ -74,6 +70,7 @@
                     <% } %>
         </table>
     </section>
+    <script src="/js/clickableRows.js"></script>
 </body>
 
 </html>
