@@ -27,38 +27,39 @@
                 <div class="container m-3">
                     <form action="/users/profile" method="post" id="formulaire">
                         <div class="row">
-                            <%= console.log(user) %>
                             <div class="mb-3 col">
                                 <label for="fname" class="form-label">Prénom</label>
-                                <input type="text" class="form-control" id="fname" name="first_name" placeholder="<%= user.first_name %>" value="<%= user.first_name  %>" >
+                                <input type="text" class="form-control" id="fname" name="first_name" placeholder="<%=user[0].first_name%>" value="<%=user[0].first_name%>" >
                             </div>
                             <div class="mb-3 col">
                                 <label for="lname" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="lname" placeholder= "<%= user.last_name  %>">
+                                <input type="text" class="form-control" id="lname" placeholder= "<%= user[0].last_name  %>" value="<%=user[0].last_name%>">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="mb-3 col">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder= "<%= user.email %>"  >
+                                <input type="email" class="form-control" id="email" placeholder= "<%= user[0].email %>" value= "<%= user[0].email %>"  >
                             </div>
 
                             <div class="mb-3 col">
                                 <label for="tel" class="form-label">Numéro de Téléphone</label>
-                                <input type="tel" class="form-control" id="tel" placeholder="<%= user.tel  %>">
+                                <input type="tel" class="form-control" id="tel" placeholder="<%= user[0].tel  %>" value="<%= user[0].tel  %>">
                             </div>
 
                             <div class="mb-3 col">
-                                <input type="checkbox" id="got_license" name="got_license" <%= user.got_license ? 'checked' : '' %>> <!-- ? fait poser la question if true alors checked sinon c'est pas checked -->
+                                <input type="checkbox" id="got_license" name="got_license" <%= user[0].got_license ? 'checked' : '' %>> <!-- ? fait poser la question if true alors checked sinon c'est pas checked -->
                                 <label for="got_license">J'ai le permis de voiture</label>                             
                             </div>
                         </div>
                         
                         <div class="mb-3">
                             <label for="profile_desc" class="form-label">Infos</label>
-                            <textarea class="form-control" id="profile_desc" rows="3"></textarea>
+                            <textarea class="form-control" id="profile_desc" name="profile_desc" placeholder="<%= user[0].profile_desc %>" value="<%= user[0].profile_desc %>" rows="3"></textarea>
                         </div>
+
+                        
                     </form>
                 </div>
                 <h2 id="2" class="mt-5">Documents</h2>

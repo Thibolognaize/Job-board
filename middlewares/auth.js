@@ -12,7 +12,6 @@ function isAdmin(req, res, next) {
     if (req.session.user && req.session.user.isAdmin === true) {
         return next();
     } 
-    console.log(req.session.user)
     res.status(403).send('Accès refusé');
 }
 
