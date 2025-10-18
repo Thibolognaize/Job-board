@@ -69,7 +69,8 @@ module.exports = {
                 // Stocke les informations de l'utilisateur en session
                 req.session.user = {
                     id: user.id,
-                    name : user.first_name + " " + user.last_name,
+                    first_name : user.first_name,
+                    last_name : user.last_name,
                     email: user.email,
                     role : user.role || 'user',
                     isAdmin: user.is_admin || false
@@ -133,4 +134,50 @@ module.exports = {
       res.status(500).send("Erreur serveur");
     }
   },
+    updateProfil: async (req, res) => {
+    try {
+        const {
+            first_name,
+            last_name,
+            email,
+            tel,
+            got_license,
+            profile_desc,
+            address,
+        } = req.body;
+
+        // Requête paramétrée pour éviter les injections SQL
+        const query = `
+        UPDATE users
+        SET
+            first_name = $1,
+            last_name = $2,
+            email = $3,
+            tel = $4,
+            got_license = $5,
+            profile_desc = $6,
+            address = $7
+        WHERE id = $8
+        `;
+        
+        // Valeurs à passer (NULL si non fournies, sauf pour is_admin qui a une valeur par défaut)
+        const values = [
+            first_name || req.session.user.first_name,
+            last_name || req.session.user.last_name,
+            email || req.session.user.email,
+            tel || null,
+            got_license || null,
+            profile_desc || null,
+            address || null,
+            req.session.user.id,
+        ];
+        
+        await db.query(query, values);
+            res.status(200).send("Utilisateur mis à jour avec succès");
+
+        } catch (err) {
+            console.error(`Erreur serveur: ${err.message}`);
+            res.status(500).send("Erreur serveur lors de la mise à jour");
+        }
+    },
 };

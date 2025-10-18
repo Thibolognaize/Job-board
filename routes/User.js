@@ -10,8 +10,8 @@ router.get("/register", controller.renderRegister);
 router.post("/register", controller.register); // CREATE
 
 router.get("/profil", controller.renderProfil)
-/* router.get("/user/:userId", controller.updateProfil); // UPDATE
-router.post("/user/:userId", controller.logoutProfil); // Jsp ?
+router.post("/profil", controller.updateProfil); // UPDATE
+/* router.post("/user/:userId", controller.logoutProfil); // Jsp ?
 router.delete("/user/:userId", controller.deleteUser); // DELETE */
 
 module.exports = router;

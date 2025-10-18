@@ -58,8 +58,9 @@
                             <label for="profile_desc" class="form-label">Infos</label>
                             <textarea class="form-control" id="profile_desc" name="profile_desc" value="<%= user[0].profile_desc %>" rows="3"></textarea>
                         </div>
-
+                        
                         <button class="btn update_button" type="submit">Enregistrer les changements</button>
+                        <%= console.log("ID envoyé :", user[0].id);%>
 
                     </form>
                 </div>
