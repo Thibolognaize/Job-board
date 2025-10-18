@@ -108,13 +108,13 @@
                 async function showAdvertisementDetail(id) {
                     const detailContent = document.getElementById('detail-content');
                     detailContent.innerHTML = `
-            <div class="w-100 d-flex flex-column align-items-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Chargement...</span>
-                </div>
-                <p class="text-center mt-2">Chargement...</p>
-            </div>
-        `;
+                        <div class="w-100 d-flex flex-column align-items-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement...</span>
+                            </div>
+                            <p class="text-center mt-2">Chargement...</p>
+                        </div>
+                    `;
 
                     try {
                         const response = await fetch(`/advertisements/${id}/json`);
@@ -125,53 +125,50 @@
                         const logoSrc = advertisement.img_path || "/chemin/vers/image/par/defaut.jpg";
 
                         detailContent.innerHTML = `
-                <div id="add-info" class="w-100 d-flex flex-column align-items-center">
-                    <img
-                        src="${logoSrc}"
-                        alt="Logo de l'entreprise"
-                        class="img-fluid mb-3"
-                        style="max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #f4b324;"
-                    >
-                    <h2 class="text-center mb-3" style="color: #333;">${advertisement.title}</h2>
-                    <div class="card w-100 mb-3" style="border: none; background-color: transparent;">
-                        <div class="card-body text-start">
-                            <p class="card-text mb-2"><strong>Entreprise :</strong> ${advertisement.company_name || "Non spécifiée"}</p>
-                            <p class="card-text mb-2">
-                                <strong>Site web :</strong>
-                                ${advertisement.website ?
+                        <div id="add-info" class="w-100 d-flex flex-column align-items-center">
+                            <img
+                                src="${logoSrc}"
+                                alt="Logo de l'entreprise"
+                                class="img-fluid mb-3"
+                                style="max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #f4b324;"
+                            >
+                            <h2 class="text-center mb-3" style="color: #333;">${advertisement.title}</h2>
+                            <div class="card w-100 mb-3" style="border: none; background-color: transparent;">
+                                <div class="card-body text-start">
+                                    <p class="card-text mb-2"><strong>Entreprise :</strong> ${advertisement.company_name || "Non spécifiée"}</p>
+                                    <p class="card-text mb-2">
+                                        <strong>Site web :</strong>
+                                        ${advertisement.website ?
                                 `<a href="${advertisement.website}" target="_blank" class="text-decoration-none" style="color: #0d6efd;">${advertisement.website}</a>` :
                                 "Non spécifié"
                             }
-                            </p>
-                            <p class="card-text mb-2"><strong>Vues :</strong> ${advertisement.views || 0}</p>
-                            <p class="card-text mb-2">
-                                <strong>Dernière mise à jour :</strong>
-                                ${new Date(advertisement.last_update).toLocaleDateString('fr-FR')}
-                            </p>
-                            <div class="mt-3">
-                                <h5 class="mb-2" style="color: #333;">Description :</h5>
-                                <div class="p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #f4b324;">
-                                    <p class="mb-0" style="white-space: pre-line;">${advertisement.description}</p>
+                                    </p>
+                                    <p class="card-text mb-2"><strong>Vues :</strong> ${advertisement.views || 0}</p>
+                                    <p class="card-text mb-2">
+                                        <strong>Dernière mise à jour :</strong>
+                                        ${new Date(advertisement.last_update).toLocaleDateString('fr-FR')}
+                                    </p>
+                                    <div class="mt-3">
+                                        <h5 class="mb-2" style="color: #333;">Description :</h5>
+                                        <div class="p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #f4b324;">
+                                            <p class="mb-0" style="white-space: pre-line;">${advertisement.description}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            `;
+                    `;
                     } catch (error) {
                         console.error("Erreur lors de la récupération des détails de l'annonce :", error);
                         detailContent.innerHTML = `
-                <div class="w-100 d-flex flex-column align-items-center justify-content-center">
-                    <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 2rem;"></i>
-                    <p class="text-center text-danger mt-2">Erreur lors du chargement des détails.</p>
-                </div>
-            `;
+                        <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+                            <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 2rem;"></i>
+                            <p class="text-center text-danger mt-2">Erreur lors du chargement des détails.</p>
+                        </div>
+                    `;
                     }
                 }
             </script>
-
-
-
 </body>
 
 </html>
