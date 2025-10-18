@@ -35,7 +35,9 @@
                                 <%= companies.id %>
                             </td>
                             <td>
-                                <%= companies.name %>
+                                <a href="/admin/company/<%= companies.id %>">
+                                    <%= companies.name %>
+                                </a>
                             </td>
                             <td>
                                 <a href="<%= companies.website %>">

@@ -134,7 +134,8 @@ module.exports = {
         .send("Erreur serveur lors de la suppression de l'utilisateur");
     }
   },
-
+  // Actions pour companies
+  // READ (all)
   getCompanies: async (req, res) => {
     const companies = await db.query(`
         SELECT 
@@ -143,9 +144,38 @@ module.exports = {
           u.email AS user_email
         FROM companies c
         JOIN users u ON c.user_id = u.id ;`);
-    console.log(companies);
     res.render("admin/companies", { companies: companies });
   },
+  // UPDATE
+  getCompanyInfo: async (req, res) => {
+    try {
+      const companyId = req.params.companyId;
+      const company = await db.query(
+        `
+        SELECT
+            c.id,
+            c.name,
+            c.website,
+            c.contact,
+            c.address,
+            c.city,
+            u.id as user_id,
+            u.email as user_email
+        FROM companies c
+        LEFT JOIN users u ON c.user_id = u.id
+        WHERE c.user_id = $1;
+      `,
+        [companyId]
+      ); // Passer userId comme paramètre
+      console.log("Résultat de la requête :", company);
+      res.render("admin/companyInfo", { company: company[0] });
+    } catch (err) {
+      console.error("Error: ", err);
+      res.status(500).send("Erreur serveur");
+    }
+  },
+  postCompanyInfo: () => {},
+  deleteCompany: () => {},
   getAdvertisements: async (req, res) => {
     const advertisements = await db.query(`
       SELECT 
@@ -155,4 +185,8 @@ module.exports = {
       JOIN companies c ON a.companies_id =  c.id;`);
     res.render("admin/advertisements", { advertisements: advertisements });
   },
+  //
+  // getAdvertisementInfo: () => {},
+  // postAdvertisementInfo: () => {},
+  // deleteAdvertisement: () => {},
 };
