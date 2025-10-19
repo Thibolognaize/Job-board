@@ -6,6 +6,8 @@ const controller = require("../controllers/AdvertisementController");
 router.get("/", controller.getAll);
 router.get("/:id/json", controller.getAdvertisementJson);
 
+router.get("/:id/apply", controller.getApply);
+router.post("/:id/apply", controller.postApply);
 
 // Create
 router.post("/", controller.post);

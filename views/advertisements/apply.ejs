@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postuler à l'annonce</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+        <main class="">
+            <div class="container d-flex flex-column align-items-center justify-content-center">
+                <div class="form-container w-100 m-5" style="max-width: 800px;">
+                    <!-- Section de rappel de l'annonce -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title text-center mb-4">Rappel de l'annonce</h2>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4 class="mb-3">
+                                        <%= advertisement.title %>
+                                    </h4>
+                                    <h5 class="text-muted mb-3">
+                                        <%= advertisement.company_name || "Entreprise non spécifiée" %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= advertisement.description %>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <% if (advertisement.img_path) { %>
+                                        <img src="<%= advertisement.img_path %>" alt="Logo de l'entreprise"
+                                            class="img-fluid"
+                                            style="max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #f4b324;">
+                                        <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de candidature -->
+                    <form class="d-flex flex-column" method="POST"
+                        action="/advertisements/<%= advertisement.id %>/apply">
+                        <h1 class="text-center mb-5">Postuler à l'annonce</h1>
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">Prénom</label>
+                            <input type="text" id="first_name" name="first_name" class="form-control"
+                                value="<%= user ? user.first_name : '' %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Nom</label>
+                            <input type="text" id="last_name" name="last_name" class="form-control"
+                                value="<%= user ? user.last_name : '' %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                value="<%= user ? user.email : '' %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tel" class="form-label">Téléphone</label>
+                            <input type="tel" id="tel" name="tel" class="form-control"
+                                value="<%= user ? user.tel : '' %>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cv_path" class="form-label">CV (Lien)</label>
+                            <input type="url" id="cv_path" name="cv_path" class="form-control"
+                                value="<%= user ? user.cv_path : '' %>" placeholder="https://exemple.com/mon-cv.pdf">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Envoyer la candidature</button>
+                    </form>
+
+                    <!-- Messages de succès ou d'erreur -->
+                    <% if (locals.success || locals.error) { %>
+                        <div class="alert alert-<%= locals.success ? 'success' : 'danger' %> mt-3" id="alertMessage">
+                            <%= locals.message %>
+                                <a href="<%= locals.link %>" class="alert-link">Retour à la liste des annonces</a>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </main>
+        <%- include('../partials/footer') %>
+</body>
+
+</html>
