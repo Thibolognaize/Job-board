@@ -2,16 +2,23 @@
 const jwt = require('jsonwebtoken')
 
 function isAuthenticated(req, res, next) {
+<<<<<<< HEAD
     const token = req.cookies.accessToken;
     if (token) {
         res.locals.user = jwt.verify(token, process.env.ACCES_TOKEN_SECRET);
         return next();
     }
     res.redirect("/user/login"); // Redirige vers login
+=======
+  if (req.session.user) {
+    return next();
+  }
+  res.redirect("/user/login"); // Redirige vers login
+>>>>>>> develop
 }
 
-
 function isAdmin(req, res, next) {
+<<<<<<< HEAD
     const token = req.cookies.accessToken;
     if (token && req.cookies.isAdmin === true) {
         console.log("VERIF IS ADMIN REUSSI")
@@ -19,6 +26,12 @@ function isAdmin(req, res, next) {
     } 
     console.log(req.cookies)
     res.status(403).send('Accès refusé');
+=======
+  if (req.session.user && req.session.user.isAdmin === true) {
+    return next();
+  }
+  res.status(403).send("Accès refusé");
+>>>>>>> develop
 }
 /* 
 function authenticateToken(req,res,next){
@@ -27,6 +40,7 @@ function authenticateToken(req,res,next){
     //si autheader est un string valable alors on accede à la partie token 
     //const token = authHeader && authHeader.split(' ')[1]
 
+<<<<<<< HEAD
     console.log(token)
 
     if (!token){
@@ -73,4 +87,22 @@ module.exports = {
     isAdmin,
     //authenticateToken,
     //refreshToken
+=======
+function isCompany(req, res, next) {
+  if (req.session.user && req.session.user.role === "company") {
+    return next();
+  }
+  res
+    .status(403)
+    .send(
+      "Accès refusé, vous devez être affilié à une entreprise pour poster des annonces"
+    );
+}
+
+// Exportation des middlewares
+module.exports = {
+  isAuthenticated,
+  isAdmin,
+  isCompany,
+>>>>>>> develop
 };

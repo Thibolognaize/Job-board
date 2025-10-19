@@ -1,9 +1,3 @@
-CREATE TABLE IF NOT EXISTS key_words (
-    id SERIAL PRIMARY KEY,
-    word VARCHAR(255),
-    category VARCHAR(255)
-);
-
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -45,14 +39,6 @@ CREATE TABLE IF NOT EXISTS advertisements (
     FOREIGN KEY (companies_id) REFERENCES companies (id)
 );
 
-CREATE TABLE IF NOT EXISTS advertisement_keywords (
-    advertisement_id INT,
-    keyword_id INT,
-    PRIMARY KEY (advertisement_id, keyword_id),
-    FOREIGN KEY (advertisement_id) REFERENCES advertisements (id),
-    FOREIGN KEY (keyword_id) REFERENCES key_words (id)
-);
-
 CREATE TABLE IF NOT EXISTS history (
     id SERIAL PRIMARY KEY,
     is_recontacted BOOLEAN,
@@ -62,4 +48,20 @@ CREATE TABLE IF NOT EXISTS history (
     last_update TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (advertisement_id) REFERENCES advertisements (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS applies (
+    id SERIAL PRIMARY KEY,
+    user_id INT,
+    advertisement_id INT NOT NULL,
+    application_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    description TEXT,
+    is_answered BOOLEAN DEFAULT FALSE,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255),
+    tel VARCHAR(20),
+    cv_path VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (advertisement_id) REFERENCES advertisements (id)
 );

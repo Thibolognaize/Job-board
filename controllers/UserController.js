@@ -13,21 +13,9 @@ function generateAccesToken(user){
  */
 
 module.exports = {
-    // getUsers: (req, res) => {
-    //     db.any("SELECT * FROM users;")
-    //         .then(rows => {
-    //             console.log(rows);
-    //             res.json(rows);
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //             res.status(500).send("Erreur serveur");
-    //         });
-    // },
-
-    renderLogin: (req, res) => {
-        res.render("users/login", { error: req.query.error });
-    },
+  renderLogin: (req, res) => {
+    res.render("users/login", { error: req.query.error });
+  },
 
     renderRegister: (req, res) => {
         res.render("users/register", { error: req.query.error });
@@ -51,6 +39,21 @@ module.exports = {
         }
     },
 
+  login: async (req, res) => {
+    try {
+      const email_input = req.body.email;
+      const password_input = req.body.password;
+      const remember = req.remember;
+
+      // Recherche l'utilisateur par email
+      const user = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [
+        email_input,
+      ]);
+      if (!user) {
+        return res.redirect(
+          "/user/login?error=Email ou mot de passe incorrect"
+        );
+      }
     login: async (req, res) => {
         try {
             const { email, password } = req.body;

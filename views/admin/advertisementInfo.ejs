@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - UserInfo</title>
+    <title>Admin - Advertisement Info</title>
+    <!-- Lien vers Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/global.css">
@@ -16,97 +17,81 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header bg-yellow">
-                        <h2 class="text-center">Informations Utilisateur</h2>
+                        <h2 class="text-center">Informations Annonce</h2>
                     </div>
                     <div class="card-body">
-                        <form class="form" id="userForm">
+                        <form class="form" id="advertisementForm">
                             <div class="form-row">
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="firstName">Prénom</label>
-                                        <input type="text" class="form-control" name="firstName" id="first_name"
-                                            value="<%= user.first_name %>" />
+                                        <label for="title">Titre</label>
+                                        <input type="text" class="form-control" name="title" id="title"
+                                            value="<%= advertisement.title %>" />
                                     </div>
                                 </div>
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="lastName">Nom</label>
-                                        <input type="text" class="form-control" name="lastName" id="last_name"
-                                            value="<%= user.last_name %>" />
+                                        <label for="views">Vues</label>
+                                        <input type="number" class="form-control" name="views" id="views"
+                                            value="<%= advertisement.views %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email"
-                                            value="<%= user.email %>" />
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" rows="3" name="description"
+                                            id="description"><%= advertisement.description %></textarea>
                                     </div>
                                 </div>
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="tel">Téléphone</label>
-                                        <input type="text" class="form-control" name="tel" id="tel"
-                                            value="<%= user.tel %>" />
+                                        <label for="img_path">Chemin de l'image</label>
+                                        <input type="text" class="form-control" name="img_path" id="img_path"
+                                            value="<%= advertisement.img_path %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="license">Permis de conduire</label>
-                                        <select class="form-control" name="license" id="license">
-                                            <option value="">
-                                                <%= user.got_license ? "-- Oui --" : "-- undefined --" %>
+                                        <label for="is_active">Active</label>
+                                        <select class="form-control" name="is_active" id="is_active">
+                                            <option value="<%= advertisement.is_active %>">
+                                                <%= advertisement.is_active ? "Oui" : "Non" %>
                                             </option>
-                                            <option value="true">OUI</option>
-                                            <option value="false">NON</option>
+                                            <option value="true">Oui</option>
+                                            <option value="false">Non</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="address">Adresse</label>
-                                        <input type="text" class="form-control" name="address" id="address"
-                                            value="<%= user.address %>" />
+                                        <label for="companies_id">ID de l'entreprise</label>
+                                        <input type="text" class="form-control" name="companies_id" id="companies_id"
+                                            value="<%= advertisement.companies_id %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-col">
                                     <div class="form-group">
-                                        <label for="profile_pic">Path photo de profil</label>
-                                        <input type="text" class="form-control" name="profile_pic" id="profile_pic"
-                                            value="<%= user.profile_picture_path %>" />
-                                    </div>
-                                </div>
-                                <div class="form-col">
-                                    <div class="form-group">
-                                        <label for="cv">Path CV</label>
-                                        <input type="text" class="form-control" name="cv" id="cv"
-                                            value="<%= user.cv_path %>" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-col">
-                                    <div class="form-group">
-                                        <label for="desc">Description</label>
-                                        <textarea class="form-control" rows="3" name="desc"
-                                            id="desc"><%= user.profile_desc %></textarea>
+                                        <label for="company_name">Nom de l'entreprise</label>
+                                        <input type="text" class="form-control" name="company_name" id="company_name"
+                                            value="<%= advertisement.company_name %>" disabled />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Date de création</label>
+                                <label>Dernière mise à jour</label>
                                 <p class="form-control-static">
-                                    <%= new Date(user.created_at).toLocaleDateString('fr-FR') %>
+                                    <%= new Date(advertisement.last_update).toLocaleDateString('fr-FR') %>
                                 </p>
                             </div>
                             <div class="form-row justify-content-center">
-                                <a href="/admin/users" class="btn btn-primary btn-custom">Retour à la liste des
-                                    utilisateurs</a>
+                                <a href="/admin/advertisements" class="btn btn-primary btn-custom">Retour à la liste des
+                                    annonces</a>
                                 <button onclick="save(event)" class="btn btn-secondary btn-custom"
                                     type="button">Sauvegarder les infos</button>
                                 <button onclick="remove(event)" class="btn btn-outline-danger btn-custom" type="button">
@@ -130,19 +115,16 @@
         const save = async (event) => {
             event.preventDefault();
             const formData = {
-                "id": "<%= user.id %>",
-                "first_name": document.getElementById("first_name").value,
-                "last_name": document.getElementById("last_name").value,
-                "email": document.getElementById("email").value,
-                "tel": document.getElementById("tel").value,
-                "got_license": document.getElementById("license").value,
-                "profile_desc": document.getElementById("desc").value,
-                "address": document.getElementById("address").value,
-                "profile_picture_path": document.getElementById("profile_pic").value,
-                "cv_path": document.getElementById("cv").value
+                "id": "<%= advertisement.id %>",
+                "title": document.getElementById("title").value,
+                "description": document.getElementById("description").value,
+                "views": document.getElementById("views").value,
+                "img_path": document.getElementById("img_path").value,
+                "is_active": document.getElementById("is_active").value,
+                "companies_id": document.getElementById("companies_id").value
             }
             try {
-                const response = await fetch('/admin/user/<%=user.id%>', {
+                const response = await fetch('/admin/advertisement/<%= advertisement.id %>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -174,9 +156,9 @@
             }
         };
         const remove = async (event) => {
-            if (confirm("Êtes vous sûr de supprimer un utilisateur ?")) {
+            if (confirm("Êtes vous sûr de supprimer cette annonce ?")) {
                 try {
-                    const response = await fetch('/admin/user/<%= user.id %>', {
+                    const response = await fetch('/admin/advertisement/<%= advertisement.id %>', {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
@@ -185,9 +167,9 @@
                     if (response.ok) {
                         const message = await response.text();
                         alert(message);
-                        window.location.href = '/admin/users';
+                        window.location.href = '/admin/advertisements';
                     } else {
-                        alert("Erreur lors de la suppression de l'utilisateur");
+                        alert("Erreur lors de la suppression de l'annonce");
                     }
                 } catch (error) {
                     console.error("Erreur réseau :", error);

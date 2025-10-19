@@ -1,14 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Advertisements</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/global.css">
 </head>
 
 <body>
-    <h1>Admin-advertisements</h1>
+    <section class="container p-3">
+        <h1 class="text-center mb-3">Admin - Advertisements</h1>
+        <table class="table table-striped table-bordered table-hover table-sm table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Views</th>
+                    <th scope="col">Img_path</th>
+                    <th scope="col">Active ?</th>
+                    <th scope="col">Entreprise_ID</th>
+                    <th scope="col">Entreprise</th>
+                    <th scope="col">Updated</th>
+                </tr>
+            </thead>
+            <% if (advertisements && advertisements.length> 0) { %>
+                <tbody>
+                    <% advertisements.forEach(advertisement=> { %>
+                        <tr class="clickable-row" data-href="/admin/advertisement/<%= advertisement.id %>">
+                            <td>
+                                <%= advertisement.id %>
+                            </td>
+                            <td>
+                                <%= advertisement.title %>
+                            </td>
+                            <td>
+                                <%= advertisement.description %>
+                            </td>
+                            <td>
+                                <%= advertisement.views %>
+                            </td>
+                            <td>
+                                <%= advertisement.img_path %>
+                            </td>
+                            <td>
+                                <%= advertisement.is_active %>
+                            </td>
+                            <td>
+                                <%= advertisement.companies_id %>
+                            </td>
+                            <td>
+                                <%= advertisement.company_name %>
+                            </td>
+                            <td>
+                                <%= new Date(advertisement.last_update).toLocaleDateString('fr-FR') %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+                <% } else { %>
+                    <tbody>
+                        <tr>
+                            <td colspan="11" class="text-danger">No Advertisements found</td>
+                        </tr>
+                    </tbody>
+                    <% } %>
+        </table>
+    </section>
+    <script src="/js/clickableRows.js"></script>
 </body>
 
 </html>

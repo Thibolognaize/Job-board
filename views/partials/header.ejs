@@ -11,14 +11,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/advertisements">Toutes nos annonces</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/advertisements/create">Ajouter une annonce</a>
-                </li>
-                <% if (user && user.isAdmin) { %>
+
+                <% if (user && (user.role=="company" ) ) { %>
                     <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="/admin">Admin</a>
+                        <a class="nav-link" href="/advertisements/create">Poster une annonce</a>
                     </li>
                     <% } %>
+
+                        <% if (user && user.isAdmin) { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">Administration</a>
+                            </li>
+                            <% } %>
             </ul>
             <div id="profile-wrapper " class="d-flex gap-1 align-items-center" role="profile">
                 <a class="nav-link text-center" href="/user/login">Profil</a>

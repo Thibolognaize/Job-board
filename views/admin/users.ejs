@@ -26,13 +26,13 @@
 					<th scope="col">Adresse</th>
 					<th scope="col">Picture</th>
 					<th scope="col">CV</th>
-					<th scope="col">Créer le</th>
+					<th scope="col">Créé le</th>
 				</tr>
 			</thead>
 			<% if (users && users.length> 0) { %>
 				<tbody>
 					<% users.forEach(user=> { %>
-						<tr>
+						<tr class="clickable-row" data-href="/admin/user/<%= user.id %>">
 							<td>
 								<%= user.id %>
 							</td>
@@ -43,9 +43,7 @@
 								<%= user.last_name %>
 							</td>
 							<td>
-								<a href="/admin/user/<%= user.id %>">
-									<%= user.email %>
-								</a>
+								<%= user.email %>
 							</td>
 							<td>
 								<%= user.tel %>
@@ -66,7 +64,7 @@
 								<%= user.cv_path %>
 							</td>
 							<td>
-								<%= user.created_at %>
+								<%= new Date(user.created_at).toLocaleDateString('fr-FR') %>
 							</td>
 						</tr>
 						<% }) %>
@@ -80,6 +78,7 @@
 					<% } %>
 		</table>
 	</section>
+	<script src="/js/clickableRows.js"></script>
 </body>
 
 </html>

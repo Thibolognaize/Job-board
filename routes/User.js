@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const controller = require("../controllers/UserController");
+<<<<<<< HEAD
 const middleware = require("../../../../../Bureau/WEB/Job-board/middlewares/auth"); // diff syntaxe par rapport à admin.js
 const { isAuthenticated } = require("../middlewares/auth");
 
@@ -9,9 +10,13 @@ const { isAuthenticated } = require("../middlewares/auth");
 // router.get("/", controller.getUsers);
 
 router.get("/login" ,controller.renderLogin)
+=======
+
+router.get("/login", controller.renderLogin);
+>>>>>>> develop
 router.post("/login", controller.login);
 
-router.get("/register", controller.renderRegister)
+router.get("/register", controller.renderRegister);
 router.post("/register", controller.register);
 
 router.get("/profil", controller.renderProfil)
