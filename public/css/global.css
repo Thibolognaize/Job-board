@@ -153,23 +153,19 @@ main {
 
 /*Profil*/
 
-#row{
-    height: 100vh;
-}
-
 .profile-info{
     background-color: #f4b324;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .profile-info a{
     color: #1c191a;
 }
 
-.profile-info img{
+/* .profile-info img{
     width: 112px;
     height: 112px;
-}
+} */
 
 .updateProfileButton{
   background-color: #f4b324;
