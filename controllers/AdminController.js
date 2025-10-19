@@ -1,11 +1,11 @@
 const db = require("../models/db");
 
 module.exports = {
-  // Tous les accès à nos pages
+  // --------------------------------------------- ACCES TO admin ---------------------------------------------
   get: (req, res) => {
     res.render("admin/index");
   },
-  // Actions pour USERS
+  // -------------------------------------------------- LOGIC FOR admin/users ---------------------------------------------
   getUsers: async (req, res) => {
     try {
       const users = await db.query(`
@@ -133,7 +133,7 @@ module.exports = {
         .send("Erreur serveur lors de la suppression de l'utilisateur");
     }
   },
-  // Actions pour companies
+  // --------------------------------------------- LOGIC FOR admin/companies ---------------------------------------------
   // READ (all)
   getCompanies: async (req, res) => {
     const companies = await db.query(`
@@ -222,7 +222,7 @@ module.exports = {
     }
   },
 
-  // Admin Advertisements controller
+  // --------------------------------------------- LOGIC FOR admin/advertisements ---------------------------------------------
   getAdvertisements: async (req, res) => {
     const advertisements = await db.query(`
       SELECT 
@@ -313,4 +313,32 @@ module.exports = {
         .send("Erreur serveur lors de la suppression de l'annonce");
     }
   },
+
+  // --------------------------------------------- LOGIC FOR admin/applications ---------------------------------------------
+  // READ
+  getApplications: async (req, res) => {
+    const applications = await db.query(`
+      SELECT
+        ap.id AS application_id,
+        ap.application_date AS application_date,
+        ap.description AS application_description,
+        ap.is_answered AS is_answered,
+        ap.first_name AS first_name,
+        ap.last_name AS last_name,
+        ap.email AS email,
+        ap.tel AS phone,
+        ap.cv_path AS cv_path,
+        ad.title AS advertisement_title,
+        ad.is_active AS is_active,
+        ad.last_update AS last_update
+      FROM applications ap
+      LEFT JOIN advertisements ad ON ap.advertisement_id = ad.id;
+    `);
+    res.render("admin/applications", { applications: applications });
+  },
+  getApplyInfo: async (req, res) => {},
+  // UPDATE
+  postApplyInfo: async (req, res) => {},
+  // DELETE
+  deleteApply: async (req, res) => {},
 };
