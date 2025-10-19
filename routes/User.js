@@ -9,9 +9,8 @@ router.post("/login", controller.login);
 router.get("/register", controller.renderRegister);
 router.post("/register", controller.register); // CREATE
 
-router.get("/profil", controller.renderProfil)
-router.post("/profil", controller.updateProfil); // UPDATE
-/* router.post("/user/:userId", controller.logoutProfil); // Jsp ?
-router.delete("/user/:userId", controller.deleteUser); // DELETE */
+router.get("/profil", controller.renderProfil) //READ
+router.post("/profil/:userId", controller.updateProfil); // UPDATE
+router.delete("/profil/:userId", controller.deleteAccount); // DELETE
 
 module.exports = router;
