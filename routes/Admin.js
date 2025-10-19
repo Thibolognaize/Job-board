@@ -1,40 +1,46 @@
 const express = require("express");
 const router = express.Router();
 
-const { isAuthenticated, isAdmin } = require("../middlewares/auth");
+const { isAdmin } = require("../middlewares/auth");
 const controller = require("../controllers/AdminController");
 
 // Index de l'espace admin
-router.get("/", isAuthenticated, isAdmin, controller.get);
+router.get("/", isAdmin, controller.get);
 
 // Controller Admin - Companies
-router.get("/companies", controller.getCompanies);
-router.get("/company/:companyId", controller.getCompanyInfo);
-router.post("/company/:companyId", controller.postCompanyInfo);
-router.delete("/company/:companyId", controller.deleteCompany);
+router.get("/companies", isAdmin, controller.getCompanies);
+router.get("/company/:companyId", isAdmin, controller.getCompanyInfo);
+router.post("/company/:companyId", isAdmin, controller.postCompanyInfo);
+router.delete("/company/:companyId", isAdmin, controller.deleteCompany);
 
 // Controller Admin - Advertisements
-router.get("/advertisements", controller.getAdvertisements);
-router.get("/advertisement/:advertisementId", controller.getAdvertisementInfo);
+router.get("/advertisements", isAdmin, controller.getAdvertisements);
+router.get(
+  "/advertisement/:advertisementId",
+  isAdmin,
+  controller.getAdvertisementInfo
+);
 router.post(
   "/advertisement/:advertisementId",
+  isAdmin,
   controller.postAdvertisementInfo
 );
 router.delete(
   "/advertisement/:advertisementId",
-  controller.deleteAdvertisement
+  controller.deleteAdvertisement,
+  isAdmin
 );
 
 // Controller Admin - Users
-router.post("/user/:userId", controller.postUserInfo); // CREATE
-router.get("/users", controller.getUsers); // READ
-router.get("/user/:userId", controller.getUserInfo); // UPDATE
-router.delete("/user/:userId", controller.deleteUser); // DELETE
+router.post("/user/:userId", isAdmin, controller.postUserInfo); // CREATE
+router.get("/users", isAdmin, controller.getUsers); // READ
+router.get("/user/:userId", isAdmin, controller.getUserInfo); // UPDATE
+router.delete("/user/:userId", isAdmin, controller.deleteUser); // DELETE
 
 // Controller Admin - Applications
-router.get("/applications", controller.getApplications); // READ
-router.get("/application/:applyId", controller.getApplyInfo); // READ (ONE)
-router.post("/application/:applyId", controller.postApplyInfo);
-router.delete("/application/:applyId", controller.deleteApply);
+router.get("/applications", isAdmin, controller.getApplications); // READ
+router.get("/application/:applyId", isAdmin, controller.getApplyInfo); // READ (ONE)
+router.post("/application/:applyId", isAdmin, controller.postApplyInfo); // UPDATE
+router.delete("/application/:applyId", isAdmin, controller.deleteApply); // DELETE
 
 module.exports = router;
