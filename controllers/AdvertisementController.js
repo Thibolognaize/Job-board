@@ -80,16 +80,14 @@ module.exports = {
       description,
     ])
       .then(() => {
-        // Envoie une réponse avec un message de succès
         res.render("advertisements/create", {
           title: "",
           success: true,
           message: "Annonce créée avec succès !",
-          link: "/advertisements", // Lien pour retourner à la liste
+          link: "/advertisements",
         });
       })
       .catch((error) => {
-        // Cas d'erreur
         console.error("Erreur lors de l'ajout de l'annonce :", error);
         res.render("advertisements/create", {
           title: title,
@@ -100,6 +98,127 @@ module.exports = {
       });
   },
   getApply: async (req, res) => {
-    res.send("Coucou");
+    let user = null;
+    if (req.session.user) {
+      try {
+        user = await db.one(
+          `SELECT first_name, last_name, email, tel, cv_path FROM users WHERE id = $1;`,
+          [req.session.user.id]
+        );
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données utilisateur :",
+          error
+        );
+      }
+    }
+
+    // Récupérer les données de l'annonce
+    let advertisement = null;
+    try {
+      advertisement = await db.one(
+        `
+                SELECT
+                    a.*,
+                    c.name AS company_name,
+                    c.website,
+                    c.contact,
+                    c.address,
+                    c.city
+                FROM advertisements a
+                LEFT JOIN companies c ON a.companies_id = c.id
+                WHERE a.id = $1
+            `,
+        [req.params.id]
+      );
+    } catch (error) {
+      console.error("Erreur lors de la récupération de l'annonce :", error);
+    }
+
+    res.render("advertisements/apply", {
+      user: user,
+      advertisement: advertisement || {},
+    });
+  },
+  postApply: async (req, res) => {
+    const { first_name, last_name, email, tel, cv_path, message } = req.body;
+    const advertisementId = req.params.id;
+    const userId = req.session.user ? req.session.user.id : null;
+
+    try {
+      await db.none(
+        `INSERT INTO applications (user_id, advertisement_id, application_date, first_name, last_name, email, tel, cv_path, description)
+             VALUES ($1, $2, CURRENT_TIMESTAMP, $3, $4, $5, $6, $7, $8)`,
+        [
+          userId,
+          advertisementId,
+          first_name,
+          last_name,
+          email,
+          tel,
+          cv_path,
+          message,
+        ]
+      );
+      // Récupérer à nouveau les données de l'annonce pour les afficher dans la vue
+      const advertisement = await db.one(
+        `
+                SELECT
+                    a.*,
+                    c.name AS company_name,
+                    c.website,
+                    c.contact,
+                    c.address,
+                    c.city
+                FROM advertisements a
+                LEFT JOIN companies c ON a.companies_id = c.id
+                WHERE a.id = $1
+            `,
+        [advertisementId]
+      );
+      res.render("advertisements/apply", {
+        user: req.session.user
+          ? await db.one(
+              `SELECT first_name, last_name, email, tel, cv_path FROM users WHERE id = $1;`,
+              [req.session.user.id]
+            )
+          : null,
+        advertisement: advertisement,
+        success: true,
+        message: "Candidature envoyée avec succès !",
+        link: "/advertisements",
+      });
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'enregistrement de la candidature :",
+        error
+      );
+      res.render("advertisements/apply", {
+        user: req.session.user
+          ? await db.one(
+              `SELECT first_name, last_name, email, tel, cv_path FROM users WHERE id = $1;`,
+              [req.session.user.id]
+            )
+          : null,
+        advertisement: await db.one(
+          `
+                    SELECT
+                        a.*,
+                        c.name AS company_name,
+                        c.website,
+                        c.contact,
+                        c.address,
+                        c.city
+                    FROM advertisements a
+                    LEFT JOIN companies c ON a.companies_id = c.id
+                    WHERE a.id = $1
+                `,
+          [advertisementId]
+        ),
+        error: true,
+        message: "Erreur lors de l'envoi de la candidature.",
+        link: "/advertisements",
+      });
+    }
   },
 };
