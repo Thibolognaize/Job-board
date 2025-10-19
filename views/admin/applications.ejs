@@ -33,7 +33,7 @@
             <% if (applications && applications.length> 0) { %>
                 <tbody>
                     <% applications.forEach(application=> { %>
-                        <tr class="clickable-row" data-href="/admin/application/<%= application.id %>">
+                        <tr class="clickable-row" data-href="/admin/application/<%= application.application_id %>">
                             <td>
                                 <%= application.application_id %>
                             </td>

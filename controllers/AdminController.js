@@ -1,3 +1,4 @@
+const { application } = require("express");
 const db = require("../models/db");
 
 module.exports = {
@@ -336,9 +337,96 @@ module.exports = {
     `);
     res.render("admin/applications", { applications: applications });
   },
-  getApplyInfo: async (req, res) => {},
+  getApplyInfo: async (req, res) => {
+    try {
+      const applyId = req.params.applyId;
+      const application = await db.query(
+        `
+        SELECT
+          ap.id AS application_id,
+          ap.application_date AS application_date,
+          ap.description AS application_description,
+          ap.is_answered AS is_answered,
+          ap.first_name AS first_name,
+          ap.last_name AS last_name,
+          ap.email AS email,
+          ap.tel AS phone,
+          ap.cv_path AS cv_path,
+          ad.title AS advertisement_title,
+          ad.is_active AS is_active,
+          ad.last_update AS last_update
+        FROM applications ap
+        LEFT JOIN advertisements ad ON ap.advertisement_id = ad.id
+        WHERE ap.id = $1;
+      `,
+        [applyId]
+      );
+      res.render("admin/applicationInfo", { application: application[0] });
+    } catch (err) {
+      console.error("Error: ", err);
+      res.status(500).send("Erreur serveur");
+    }
+  },
   // UPDATE
-  postApplyInfo: async (req, res) => {},
+  postApplyInfo: async (req, res) => {
+    try {
+      const {
+        id,
+        first_name,
+        last_name,
+        email,
+        phone,
+        application_description,
+        is_answered,
+      } = req.body;
+
+      const query = `
+      UPDATE applications
+      SET
+        first_name = $1,
+        last_name = $2,
+        email = $3,
+        tel = $4,
+        description = $5,
+        is_answered = $6
+      WHERE id = $7
+    `;
+
+      // Valeurs à passer
+      const values = [
+        first_name || null,
+        last_name || null,
+        email || null,
+        phone || null,
+        application_description || null,
+        is_answered || false,
+        id,
+      ];
+
+      await db.query(query, values);
+      res.status(200).send("Candidature mise à jour avec succès");
+    } catch (err) {
+      console.error(`Erreur serveur: ${err.message}`);
+      res.status(500).send("Erreur serveur lors de la mise à jour");
+    }
+  },
+
   // DELETE
-  deleteApply: async (req, res) => {},
+  deleteApply: async (req, res) => {
+    try {
+      const applyId = req.params.applyId;
+
+      // Requête pour supprimer la candidature de la base de données
+      const query = "DELETE FROM applications WHERE id = $1";
+      const values = [applyId];
+
+      await db.query(query, values);
+      res.status(200).send("Candidature supprimée avec succès");
+    } catch (err) {
+      console.error("Erreur serveur: ", err);
+      res
+        .status(500)
+        .send("Erreur serveur lors de la suppression de la candidature");
+    }
+  },
 };

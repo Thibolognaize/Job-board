@@ -33,8 +33,8 @@ router.delete("/user/:userId", controller.deleteUser); // DELETE
 
 // Controller Admin - Applications
 router.get("/applications", controller.getApplications); // READ
-// router.get();
-// router.post();
-// router.delete();
+router.get("/application/:applyId", controller.getApplyInfo); // READ (ONE)
+router.post("/application/:applyId", controller.postApplyInfo);
+router.delete("/application/:applyId", controller.deleteApply);
 
 module.exports = router;
