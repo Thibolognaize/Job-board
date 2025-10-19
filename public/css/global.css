@@ -170,6 +170,11 @@ main {
     height: 112px;
 }
 
-.update_button{
+.updateProfileButton{
   background-color: #f4b324;
+}
+
+.deleteUserButton{
+  background-color: #f14902;
+  color: white;
 }
