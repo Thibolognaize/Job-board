@@ -184,8 +184,12 @@ module.exports = {
 
   deleteAccount: async (req, res) => {
     try {
-      // const userId = req.params.userId;
+      const userId = req.params.userId;
       // Requête pour supprimer l'utilisateur de la base de données
+
+      // D'abord supprimer les annonces du User :
+      await db.query("DELETE FROM applications WHERE user_id = $1", [userId]);
+      // Ensuite supprimer le user :
       await db.query("DELETE FROM users WHERE id = $1", [userId]);
       req.session.destroy();
       res.status(200).send("Compte supprimé avec succès");
