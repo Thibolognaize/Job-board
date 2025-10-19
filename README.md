@@ -57,6 +57,7 @@ Ce projet est une **plateforme de Job Board** (tableau d’offres d’emploi) d�
 Job-board/
 ├── controllers/
 │   ├── AdvertisementController.js
+│   ├── AdminController.js
 │   └── UserController.js
 ├── models/
 │   └── db/
@@ -96,6 +97,7 @@ Job-board/
 | pg-promise  | ^12.2.0 | Interaction avec PostgreSQL              |
 | Nodemon     | ^3.1.10 | Développement (rechargement automatique) |
 | bcrypt      | ^6.0.0  | Encryption des mots de passe             |
+| dotenv      | ^17.2.3 | Gestion des variables d’environnement    |
 
 ---
 
@@ -106,7 +108,7 @@ Job-board/
 | `/`                      | Page d’accueil                        |
 | `/user/login`            | Page de connexion                     |
 | `/user/register`         | Page d’inscription                    |
-| `/user/`                 | Liste de tous les utilisateurs (JSON) |
+| `/user/profil`           | Page de profil                        |
 | `/advertisements`        | Liste de toutes les annonces          |
 | `/advertisements/create` | Créer une nouvelle annonce            |
 | `/admin`                 | Interface d'administration            |
