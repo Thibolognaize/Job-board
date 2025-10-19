@@ -14,8 +14,20 @@ function isAdmin(req, res, next) {
   res.status(403).send("Accès refusé");
 }
 
+function isCompany(req, res, next) {
+  if (req.session.user && req.session.user.role === "company") {
+    return next();
+  }
+  res
+    .status(403)
+    .send(
+      "Accès refusé, vous devez être affilié à une entreprise pour poster des annonces"
+    );
+}
+
 // Exportation des middlewares
 module.exports = {
   isAuthenticated,
   isAdmin,
+  isCompany,
 };
