@@ -11,18 +11,17 @@
 </head>
 
 <body>
-
     <%- include('partials/header') %>
+
         <main id="search-section" class="container-fluid d-flex align-items-center text-center py-5">
             <div class="container">
-                <h2 class="fw-bold fs-1 fs-md-5 text-uppercase">La recherche d'alterance, <br>enfin simple et
-                    transparente
-                </h2>
-                <p class="fs-6 p-2">Phrase d'accroche mais en fait c'est du détail</p>
+                <h2 class="fw-bold fs-1 fs-md-5 text-uppercase">La recherche d'alternance, <br>enfin simple et
+                    transparente</h2>
+                <p class="fs-6 p-2">Rendez votre avenir plus clair dès maintenant !</p>
                 <!-- SearchBar -->
-                <div class="search-bar">
+                <!-- <div class="search-bar">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cherches ton alterance..."
+                        <input type="text" class="form-control" placeholder="Cherches ton alternance..."
                             aria-label="Search" aria-describedby="search-addon">
                         <button class="btn" type="button" id="search-addon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
@@ -32,77 +31,73 @@
                             </svg>
                         </button>
                     </div>
-                </div>
-                <button class="btn border-black mt-3 rounded-5 text-white fw-semibold"
-                    style="background-color: #1c191a;">Rechercher</button>
-                <% if (user) { %>
-                    <p>Bienvenue, <%= user.email %>!</p>
-                    <% if (user.isAdmin) { %>
-                        <p>Vous êtes un administrateur.</p>
-                        <p>Rôle: <%= user.role %>
-                        </p>
-                        <% } %>
-                            <% } else { %>
-                                <p>Bienvenue, invité!</p>
-                                <% } %>
+                </div> -->
+                <a href="/advertisements" class="btn border-black mt-3 rounded-5 text-white fw-semibold"
+                    style="background-color: #1c191a;">Rechercher !</a>
             </div>
-
         </main>
 
         <section class="container my-5 pb-3">
             <h1 class="my-3 mt-5">Nos partenaires :</h1>
-            <div class="card-group m-3 gap-3">
-                <div class="card">
-                    <a href="https://www.septeo.com/fr"><img class="img-card" src="/assets/images/template-septeo.png"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>SEPTEO</strong></h5>
-                        <p class="card-text">Septeo est une entreprise française spécialisée dans l’édition de solutions
-                            logicielles et de services informatiques. Elle s’adresse aux professionnels du droit, de
-                            l'immobilier, de l'hospitalité, de la formation et de l'éducation, ainsi qu'aux fonctions
-                            Ressources Humaines et Systèmes d’Information des entreprises de taille intermédiaire (ETI).
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary">Une offre est disponnible actuellement</small>
-                    </div>
-                </div>
-                <div class="card">
-                    <a href="https://www.edf.fr/"><img class="img-card" src="/assets/images/template-edf.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>EDF</strong></h5>
-                        <p class="card-text"></p> EDF est une entreprise française spécialisée dans la production et la
-                        fourniture d'électricité. Elle est l'un des principaux acteurs du secteur énergétique en
-                        France et dans le monde. </p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary">Une offre est disponnible actuellement</small>
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="https://www.septeo.com/fr">
+                            <img class="card-img-top img-card" src="/assets/images/template-septeo.png" alt="Septeo">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>SEPTEO</strong></h5>
+                            <p class="card-text">Septeo est une entreprise française spécialisée dans l’édition de
+                                solutions logicielles et de services informatiques. Elle s’adresse aux professionnels du
+                                droit, de l'immobilier, de l'hospitalité, de la formation et de l'éducation, ainsi
+                                qu'aux fonctions Ressources Humaines et Systèmes d’Information des entreprises de taille
+                                intermédiaire (ETI).</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Une offre est disponible actuellement</small>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <a href="https://www.capgemini.com/fr-fr/">
-                        <img class="img-card" src="/assets/images/template-capgemini.webp" alt="" width="100%"
-                            height="auto">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>CAPGEMINI</strong></h5>
-                        <p class="card-text">Capgemini est une entreprise de services informatiques et de conseil en
-                            technologies de l'information. Elle offre des solutions pour aider les entreprises à
-                            naviguer dans leur transformation numérique et à relever les défis de la transition
-                            énergétique.</p>
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="https://www.edf.fr/">
+                            <img class="card-img-top img-card" src="/assets/images/template-edf.jpg" alt="EDF">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>EDF</strong></h5>
+                            <p class="card-text">EDF est une entreprise française spécialisée dans la production et la
+                                fourniture d'électricité. Elle est l'un des principaux acteurs du secteur énergétique en
+                                France et dans le monde.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Une offre est disponible actuellement</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary">Une offre est disponnible actuellement</small>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="https://www.capgemini.com/fr-fr/">
+                            <img class="card-img-top img-card" src="/assets/images/template-capgemini.webp"
+                                alt="Capgemini">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>CAPGEMINI</strong></h5>
+                            <p class="card-text">Capgemini est une entreprise de services informatiques et de conseil en
+                                technologies de l'information. Elle offre des solutions pour aider les entreprises à
+                                naviguer dans leur transformation numérique et à relever les défis de la transition
+                                énergétique.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Une offre est disponible actuellement</small>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <%- include("partials/footer") %>
-            <!-- Scripts bootstrap -->
+
             <script src="/js/bootstrap.bundle.min.js"></script>
-            <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>
