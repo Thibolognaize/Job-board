@@ -56,7 +56,7 @@
                                 <%= advertisement.company_name %>
                             </td>
                             <td>
-                                <%= advertisement.last_update %>
+                                <%= new Date(advertisement.last_update).toLocaleDateString('fr-FR') %>
                             </td>
                         </tr>
                         <% }) %>

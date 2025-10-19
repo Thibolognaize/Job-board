@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label>Dernière mise à jour</label>
                                 <p class="form-control-static">
-                                    <%= advertisement.last_update %>
+                                    <%= new Date(advertisement.last_update).toLocaleDateString('fr-FR') %>
                                 </p>
                             </div>
                             <div class="form-row justify-content-center">

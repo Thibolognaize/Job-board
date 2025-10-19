@@ -6,6 +6,7 @@ module.exports = {
   get: (req, res) => {
     res.render("admin/index");
   },
+
   // -------------------------------------------------- LOGIC FOR admin/users ---------------------------------------------
   getUsers: async (req, res) => {
     try {
@@ -102,14 +103,14 @@ module.exports = {
         last_name || null,
         email || null,
         tel || null,
-        role || "user", // Valeur par défaut si non fournie
-        is_admin || false, // Valeur par défaut si non fournie
+        role || "user", // Valeur par défaut
+        is_admin || false, // Valeur par défaut
         got_license || null,
         profile_desc || null,
         cv_path || null,
         address || null,
         profile_picture_path || null,
-        id, // ID doit être fourni et valide
+        id,
       ];
 
       await db.query(query, values);
@@ -178,7 +179,7 @@ module.exports = {
       const { id, name, website, contact, address, city, user_id, user_email } =
         req.body;
 
-      // Requête préparée pour éviter les injections SQL
+      // Requête préparée
       const query = `
       UPDATE companies
       SET
@@ -416,11 +417,11 @@ module.exports = {
     try {
       const applyId = req.params.applyId;
 
-      // Requête pour supprimer la candidature de la base de données
+      // Requête pour supprimer
       const query = "DELETE FROM applications WHERE id = $1";
       const values = [applyId];
-
       await db.query(query, values);
+      // Envoie de la rep au front
       res.status(200).send("Candidature supprimée avec succès");
     } catch (err) {
       console.error("Erreur serveur: ", err);
