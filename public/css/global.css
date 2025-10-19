@@ -1,4 +1,3 @@
-/* Réécriture temporaire des couleurs en css classique (a faire ensuite via variables bootstrap) */
 /* index style */
 header {
   background-color: #1c191a;
@@ -54,6 +53,8 @@ main {
 
 .img-card {
   height: 225px;
+  object-fit: cover; /* Ajoute cette ligne */
+  width: 100%; /* Assure que l'image prend toute la largeur de la card */
 }
 
 /* createAdvertisement */

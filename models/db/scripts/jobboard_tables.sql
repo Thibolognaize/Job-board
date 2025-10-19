@@ -49,3 +49,19 @@ CREATE TABLE IF NOT EXISTS history (
     FOREIGN KEY (advertisement_id) REFERENCES advertisements (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
+
+CREATE TABLE IF NOT EXISTS applies (
+    id SERIAL PRIMARY KEY,
+    user_id INT,
+    advertisement_id INT NOT NULL,
+    application_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    description TEXT,
+    is_answered BOOLEAN DEFAULT FALSE,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255),
+    tel VARCHAR(20),
+    cv_path VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (advertisement_id) REFERENCES advertisements (id)
+);

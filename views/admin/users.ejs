@@ -26,7 +26,7 @@
 					<th scope="col">Adresse</th>
 					<th scope="col">Picture</th>
 					<th scope="col">CV</th>
-					<th scope="col">Créer le</th>
+					<th scope="col">Créé le</th>
 				</tr>
 			</thead>
 			<% if (users && users.length> 0) { %>
@@ -64,7 +64,7 @@
 								<%= user.cv_path %>
 							</td>
 							<td>
-								<%= user.created_at %>
+								<%= new Date(user.created_at).toLocaleDateString('fr-FR') %>
 							</td>
 						</tr>
 						<% }) %>
